@@ -22,7 +22,7 @@ def make_money1():
     print("1초에",money_take,"원씩 벌어요")
     money_input = int(input("돈을 벌 시간을 입력하세요(초) : "))
     while True:
-        if money_input <= 0: break
+        if money_input <= 0:break
         money += money_take
         time.sleep(1)
         money_input -= 1
@@ -40,10 +40,13 @@ print("\n'/도움말'을 입력하세요")
 while True:
     print("돈 :", money, " 군인 수 :", soldier, " 무기 :", weapon_name)
     print("1: 돈벌기\n2: 부대모집\n3: 무기강화\n4: 전쟁시작\n5: 게임을 끄기")
-    main_input = input() 
+    main_input = input()
     if main_input == "/도움말":
         tutorial()
     elif main_input == '1':
         make_money()
+    elif main_input == '2':
+        make_soldier()
     elif main_input == '5':
         break
+
