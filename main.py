@@ -1,20 +1,20 @@
 import time
-import pygame
-from pygame.locals import *
+# import pygame
+# from pygame.locals import *
 
-pygame.init()
+# pygame.init()
 
-FPS = 30
-FramePerSec = pygame.time.Clock()
+# FPS = 30
+# FramePerSec = pygame.time.Clock()
 
 
-SCREEN_WIDTH = 400
+# SCREEN_WIDTH = 400
 
-SCREEN_HEIGHT = 500
+# SCREEN_HEIGHT = 500
 
  
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("세계 전쟁")
+# SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+# pygame.display.set_caption("세계 전쟁")
 
 money = 1000
 soldier = 0
@@ -25,7 +25,7 @@ def tutorial():
     print("부대모집은 단순히 사람을 뽑는거고 무기강화는 무기를 강화시키는겁니다")
     print("전투력은 부대수 = HP, 무기 = 공격력입니다")
     print("메인화면에서 잔액과 부대수와 무기강화현황을 볼 수 있습니다")
-    print("나라를 점령할수록 돈벌기 수익이 증가합니다")
+    print("나라를 점령할수록 돈벌기 수익이 증가합니다\n")
 
 
 def make_money():
@@ -45,7 +45,15 @@ def make_money1():
     print("현재 돈은", money,"원 입니다")
 
 def make_soldier():
-    global money
+    global money, soldier
+    print("군인 한명당 1000원입니다\n군인을 몇 명 모집하시겠습니까")
+    soldier_i = int(input())
+    if money < soldier_i*1000:
+        print("허접~거지")
+    else:
+        soldier += soldier_i
+        money -= soldier_i*1000
+        print("현재 군인수는", soldier,"명입니다")
     
 
 
@@ -68,5 +76,7 @@ while True:
         make_money()
     elif main_input == '2':
         make_soldier()
+    elif main_input == '3':
+        
     elif main_input == '5':
         break
