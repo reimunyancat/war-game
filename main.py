@@ -14,13 +14,15 @@ import time
 
  
 # SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-# pygame.display.set_caption("세계 전쟁")
+# pygame.display.set_caption("세계 전쟁")``
 
 money = 1000
 soldier = 0
-weapon = 1
-weapon_name = '나무검'
+weapon = 0
+weapon_gan = 1
+weapon_name = '모래'
 money_take = 100
+weapon_ganha_take = 100
 def tutorial():
     print("부대모집은 단순히 사람을 뽑는거고 무기강화는 무기를 강화시키는겁니다")
     print("전투력은 부대수 = HP, 무기 = 공격력입니다")
@@ -29,9 +31,10 @@ def tutorial():
 
 
 def make_money():
-    print("1 : 깡노동  2 : 도박  3 : 허접한 도박")
+    print("1 : 깡노동  2 : 도박")
     main_input = input()
     if main_input == '1': make_money1()
+    elif main_input == '2':make_money2ex()
 
 def make_money1():
     global money, money_take
@@ -44,9 +47,13 @@ def make_money1():
         money_input -= 1
     print("현재 돈은", money,"원 입니다")
 
+def make_money2ex():
+    serve_input = input("1 : 홀짝 게임  2 : 룰렛\n")
+
+
 def make_soldier():
     global money, soldier
-    print("군인 한명당 1000원입니다\n군인을 몇 명 모집하시겠습니까")
+    print("군인 한명당 1000원입니다\n군인을 몇 명 모집하시겠습니까 ")
     soldier_i = int(input())
     if money < soldier_i*1000:
         print("허접~거지")
@@ -54,6 +61,19 @@ def make_soldier():
         soldier += soldier_i
         money -= soldier_i*1000
         print("현재 군인수는", soldier,"명입니다")
+
+def weapon_wa():
+    print("현재 무기는", weapon_name,"입니다\n현재 공격력은", weapon_gan, "입니다")
+    serve_input = int(input("1 : 강화\n2 : 돌아가기\n"))
+    if serve_input == 1:
+        weapon_ganha()
+
+def weapon_ganha():
+    global weapon_ganha_take, weapon_gan, weapon, weapon_name
+    print("현재 강화 수치는", weapon,"입니다\n강화 비용은", weapon_ganha_take,"입니다")
+    serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면'/튀튀'를 입력하세요")
+    while True:
+        if serve_input == '/튀튀':break
     
 
 
@@ -77,6 +97,6 @@ while True:
     elif main_input == '2':
         make_soldier()
     elif main_input == '3':
-        
+        weapon_wa()
     elif main_input == '5':
         break
