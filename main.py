@@ -1,20 +1,14 @@
-import time
-# import pygame
+import datetime, time, pygame, sys
 # from pygame.locals import *
-
-# pygame.init()
 
 # FPS = 30
 # FramePerSec = pygame.time.Clock()
 
 
-# SCREEN_WIDTH = 400
+SCREEN_WIDTH = 1000
 
-# SCREEN_HEIGHT = 500
+SCREEN_HEIGHT = 1000
 
- 
-# SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-# pygame.display.set_caption("세계 전쟁")``
 
 money = 1000
 soldier = 0
@@ -70,7 +64,7 @@ def weapon_wa():
 
 def weapon_ganha():
     global weapon_ganha_take, weapon_gan, weapon, weapon_name
-    print("현재 강화 수치는", weapon,"입니다\n강화 비용은", weapon_ganha_take,"입니다")
+    print(f"현재 강화 수치는 {weapon}입니다\n강화 비용은 {weapon_ganha_take}입니다")
     serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면'/튀튀'를 입력하세요")
     while True:
         if serve_input == '/튀튀':break
@@ -100,3 +94,15 @@ while True:
         weapon_wa()
     elif main_input == '5':
         break
+
+
+def main():
+    pygame.init()
+    display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("세계 전쟁")
+
+    run = True
+
+    while run:
+        pass
+    return
