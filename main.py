@@ -1,4 +1,5 @@
 import datetime, time, pygame, sys
+from random import randint
 # from pygame.locals import *
 
 # FPS = 30
@@ -9,14 +10,16 @@ SCREEN_WIDTH = 1000
 
 SCREEN_HEIGHT = 1000
 
-
 money = 1000
 soldier = 0
 weapon = 0
-weapon_gan = 1
-weapon_name = '모래'
+weapon_gan = 0
+weapon_name = {0 : '모래', 1 : '돌', 2 : '나무검'}
 money_take = 100
 weapon_ganha_take = 100
+weapon_random_front = '100%'
+weapon_random = randint(1, 100)
+weapon_random_back = 100
 def tutorial():
     print("부대모집은 단순히 사람을 뽑는거고 무기강화는 무기를 강화시키는겁니다")
     print("전투력은 부대수 = HP, 무기 = 공격력입니다")
@@ -63,11 +66,29 @@ def weapon_wa():
         weapon_ganha()
 
 def weapon_ganha():
-    global weapon_ganha_take, weapon_gan, weapon, weapon_name
-    print(f"현재 강화 수치는 {weapon}입니다\n강화 비용은 {weapon_ganha_take}입니다")
+    global money, weapon_ganha_take, weapon_gan, weapon, weapon_name, weapon_random, weapon_random_back, weapon_random_front
+    print(f"현재 강화 수치는 {weapon_name[weapon]} {weapon}입니다\n강화 비용은 {weapon_ganha_take}입니다\n강화 확률은 {weapon_random_front}입니다.")
     serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면'/튀튀'를 입력하세요")
-    while True:
-        if serve_input == '/튀튀':break
+    if serve_input == '/강화':
+        while True:
+            if weapon_random <= weapon_random_back:
+                weapon += 1
+                weapon_gan += 10
+                money -= weapon_ganha_take
+                weapon_ganha_take *= 1.1
+                print("강화 성공!")
+                serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면'/튀튀'를 입력하세요")
+                if serve_input == '/강화':
+                    continue
+                elif serve_input == '/튀튀':
+                    break
+                else:
+                    print("에러")
+            else:
+                print("강화 실패 ㅋㅋㅋㅋ")
+    elif serve_input == '/튀튀':print("에휴")
+
+            
     
 
 
@@ -81,7 +102,7 @@ main_name = input("유저 이름을 입력하세요 : ")
 print("\n'/도움말'을 입력하세요")
 
 while True:
-    print("돈 :", money, " 군인 수 :", soldier, " 무기 :", weapon_name)
+    print("돈 :", money, " 군인 수 :", soldier, " 무기 :", weapon_name, "공격력 :", weapon_gan)
     print("1: 돈벌기\n2: 부대모집\n3: 무기강화\n4: 전쟁시작\n5: 게임을 끄기")
     main_input = input()
     if main_input == "/도움말":
@@ -96,13 +117,13 @@ while True:
         break
 
 
-def main():
-    pygame.init()
-    display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("세계 전쟁")
+# def main():
+#     pygame.init()
+#     display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+#     pygame.display.set_caption("세계 전쟁")
 
-    run = True
+#     run = True
 
-    while run:
-        pass
-    return
+#     while run:
+#         pass
+#     return
