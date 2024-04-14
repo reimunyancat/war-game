@@ -13,7 +13,7 @@ SCREEN_HEIGHT = 1000
 money = 1000
 soldier = 0
 weapon = 0
-weapon_gan = 0
+weapon_gan = 1
 weapon_name = {0 : '모래', 1 : '돌', 2 : '나무검'}
 money_take = 100
 weapon_ganha_take = 100
@@ -59,11 +59,6 @@ def make_soldier():
         money -= soldier_i*1000
         print("현재 군인수는", soldier,"명입니다")
 
-def weapon_wa():
-    print("현재 무기는", weapon_name,"입니다\n현재 공격력은", weapon_gan, "입니다")
-    serve_input = int(input("1 : 강화\n2 : 돌아가기\n"))
-    if serve_input == 1:
-        weapon_ganha()
 
 def weapon_ganha():
     global money, weapon_ganha_take, weapon_gan, weapon, weapon_name, weapon_random, weapon_random_back, weapon_random_front
@@ -73,6 +68,8 @@ def weapon_ganha():
         while True:
             if weapon_random <= weapon_random_back:
                 weapon += 1
+                if weapon_gan == 1:
+                    weapon_gan += 9
                 weapon_gan += 10
                 money -= weapon_ganha_take
                 weapon_ganha_take *= 1.1
@@ -85,6 +82,7 @@ def weapon_ganha():
                 else:
                     print("에러")
             else:
+                money -= weapon_ganha_take
                 print("강화 실패 ㅋㅋㅋㅋ")
     elif serve_input == '/튀튀':print("에휴")
 
@@ -102,7 +100,8 @@ main_name = input("유저 이름을 입력하세요 : ")
 print("\n'/도움말'을 입력하세요")
 
 while True:
-    print("돈 :", money, " 군인 수 :", soldier, " 무기 :", weapon_name, "공격력 :", weapon_gan)
+    print(f"국가 이름 : {country_name}  유저 이름 : {main_name}")
+    print(f"돈 : {money} 군인 수 : {soldier} 무기 : {weapon_name[weapon]} (공격력 = {weapon_gan})")
     print("1: 돈벌기\n2: 부대모집\n3: 무기강화\n4: 전쟁시작\n5: 게임을 끄기")
     main_input = input()
     if main_input == "/도움말":
@@ -112,7 +111,7 @@ while True:
     elif main_input == '2':
         make_soldier()
     elif main_input == '3':
-        weapon_wa()
+        weapon_ganha()
     elif main_input == '5':
         break
 
