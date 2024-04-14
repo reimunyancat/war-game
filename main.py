@@ -63,7 +63,7 @@ def make_soldier():
 def weapon_ganha():
     global money, weapon_ganha_take, weapon_gan, weapon, weapon_name, weapon_random, weapon_random_back, weapon_random_front
     print(f"현재 강화 수치는 {weapon_name[weapon]} {weapon}입니다\n강화 비용은 {weapon_ganha_take}입니다\n강화 확률은 {weapon_random_front}입니다.")
-    serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면'/튀튀'를 입력하세요")
+    serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면'/튀튀'를 입력하세요\n")
     if serve_input == '/강화':
         while True:
             if weapon_random <= weapon_random_back:
@@ -74,7 +74,7 @@ def weapon_ganha():
                 money -= weapon_ganha_take
                 weapon_ganha_take *= 1.1
                 print("강화 성공!")
-                serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면'/튀튀'를 입력하세요")
+                serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면'/튀튀'를 입력하세요\n")
                 if serve_input == '/강화':
                     continue
                 elif serve_input == '/튀튀':
@@ -85,6 +85,8 @@ def weapon_ganha():
                 money -= weapon_ganha_take
                 print("강화 실패 ㅋㅋㅋㅋ")
     elif serve_input == '/튀튀':print("에휴")
+    else:
+        print("뭐라카노")
 
             
     
@@ -101,7 +103,7 @@ print("\n'/도움말'을 입력하세요")
 
 while True:
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}")
-    print(f"돈 : {money} 군인 수 : {soldier} 무기 : {weapon_name[weapon]} (공격력 = {weapon_gan})")
+    print(f"돈 : {money} 군인 수 : {soldier} 무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})")
     print("1: 돈벌기\n2: 부대모집\n3: 무기강화\n4: 전쟁시작\n5: 게임을 끄기")
     main_input = input()
     if main_input == "/도움말":
