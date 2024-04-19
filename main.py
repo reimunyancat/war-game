@@ -1,4 +1,5 @@
 import datetime, time, pygame, sys, random
+# import PIL.Image
 from random import randint
 # from pygame.locals import *
 
@@ -62,7 +63,6 @@ def make_money2ex():
     elif serve_input == '2':
         make_money3()
 
-
 def make_money2():
     global money
     printline()
@@ -88,13 +88,14 @@ def make_money2():
         print(f"컴퓨터가 선택한 숫자는 {computer_number}입니다.")
         
         if (computer_number % 2 == 0 and user_choice == '짝수') or (computer_number % 2 != 0 and user_choice == '홀수'):
-            money += betting*4
+            money += betting*4-money
             print("축하합니다! 이겼습니다.")
         else:
             money -= betting
             print("아쉽지만 실패했습니다. 다음 기회에 도전해보세요.")
 
 def make_money3():
+    global money
     printline()
     def initialize_deck():
         suits = ['스페이드', '다이아몬드', '하트', '클로버']
@@ -118,61 +119,61 @@ def make_money3():
             if value + 11 <= 21:
                 value += 11
         return value
+    print("블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 10배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다.")
+    while True:
+        serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
+        if serve_input == '2':
+            break
 
-    def blackjack():
-        print("블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 10배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다.")
-        while True:
-            serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
-            if serve_input == '2':
+        if money <= 0:
+            print("돈도 없으면서 뭔 도박이야")
+            break
+
+        betting = int(input("베팅 금액을 입력하세요: "))
+
+        deck = initialize_deck()
+        player_hand = [deck.pop(), deck.pop()]
+        dealer_hand = [deck.pop(), deck.pop()]
+
+        print("딜러의 카드:")
+        print(f" ** {dealer_hand[1]['rank']} of {dealer_hand[1]['suit']} **")
+        print("플레이어의 카드:")
+        for card in player_hand:
+            print(f" {card['rank']} of {card['suit']}")
+        player_hand_value = calculate_hand_value(player_hand)
+        dealer_hand_value = calculate_hand_value(dealer_hand)
+
+        while player_hand_value < 21:
+            action = input("카드를 더 받으시겠습니까? (y/n): ").lower()
+            if action == 'y':
+                player_hand.append(deck.pop())
+                print(f"플레이어가 받은 카드: {player_hand[-1]['rank']} of {player_hand[-1]['suit']}")
+                player_hand_value = calculate_hand_value(player_hand)
+                print(f"플레이어의 현재 카드 합계: {player_hand_value}")
+            elif action == 'n':
                 break
 
-            if money <= 0:
-                print("돈도 없으면서 뭔 도박이야")
-                break
-            deck = initialize_deck()
-            player_hand = [deck.pop(), deck.pop()]
-            dealer_hand = [deck.pop(), deck.pop()]
+        if player_hand_value > 21:
+            print("카드 합계가 21을 넘었습니다. 플레이어 패배!")
+            return
 
-            print("딜러의 카드:")
-            print(f" ** {dealer_hand[1]['rank']} of {dealer_hand[1]['suit']} **")
-            print("플레이어의 카드:")
-            for card in player_hand:
-                print(f" {card['rank']} of {card['suit']}")
-            player_hand_value = calculate_hand_value(player_hand)
+        while dealer_hand_value < 17:
+            dealer_hand.append(deck.pop())
             dealer_hand_value = calculate_hand_value(dealer_hand)
 
-            while player_hand_value < 21:
-                action = input("카드를 더 받으시겠습니까? (y/n): ").lower()
-                if action == 'y':
-                    player_hand.append(deck.pop())
-                    print(f"플레이어가 받은 카드: {player_hand[-1]['rank']} of {player_hand[-1]['suit']}")
-                    player_hand_value = calculate_hand_value(player_hand)
-                    print(f"플레이어의 현재 카드 합계: {player_hand_value}")
-                elif action == 'n':
-                    break
+        print("딜러의 최종 카드:")
+        for card in dealer_hand:
+            print(f" {card['rank']} of {card['suit']}")
+        print(f"딜러의 최종 카드 합계: {dealer_hand_value}")
 
-            if player_hand_value > 21:
-                print("카드 합계가 21을 넘었습니다. 플레이어 패배!")
-                return
-
-            while dealer_hand_value < 17:
-                dealer_hand.append(deck.pop())
-                dealer_hand_value = calculate_hand_value(dealer_hand)
-
-            print("딜러의 최종 카드:")
-            for card in dealer_hand:
-                print(f" {card['rank']} of {card['suit']}")
-            print(f"딜러의 최종 카드 합계: {dealer_hand_value}")
-
-            if dealer_hand_value > 21 or player_hand_value > dealer_hand_value:
-                print("플레이어 승리!")
-            elif dealer_hand_value > player_hand_value:
-                print("딜러 승리!")
-            else:
-                print("무승부!")
-
-
-        blackjack()
+        if dealer_hand_value > 21 or player_hand_value > dealer_hand_value:
+            print("플레이어 승리!")
+            money += betting*10-money
+        elif dealer_hand_value > player_hand_value:
+            print("딜러 승리!")
+            money -= betting
+        else:
+            print("무승부!")
 
 
 def make_soldier():
@@ -232,6 +233,10 @@ def war():
         if serve_input == 1:
             while True:
                 printline()
+                print(f"{country_name} 군인 수 : {soldier}명 ==================== {enemycountry_name[enemycountry]} 군인 수 : {enemycountry_defence[enemycountry]}")
+                print("\n\n\n\n\n\n")
+                print("  ░░░░░░███████]▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄▄▄[███████░░░░░░ [█████████████████]>\n  ◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤")
+                print("  ▂▄▅█████████▅▄▃▂             ▂▃▄▅█████████▅▄▂")
 
         elif serve_input == 2:
             break
@@ -250,7 +255,7 @@ print("\n'/도움말'을 입력하세요")
 while True:
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}")
-    print(f"돈 : {money} 군인 수 : {soldier} 무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})")
+    print(f"돈 : {money}  군인 수 : {soldier}  무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})")
     print("1: 돈벌기\n2: 부대모집\n3: 무기강화\n4: 전쟁시작\n5: 게임을 끄기")
     main_input = input()
     if main_input == "/도움말":
