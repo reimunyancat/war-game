@@ -23,8 +23,8 @@ weapon_random = randint(1, 100)
 weapon_random_back = 100
 enemycountry = 0
 enemycountry_name = {0 : '일본', 1 : '중국', 2 : '몽골', 3 : '태국'}
-enemycountry_defence = {0 : 10, 1 : 30}
-enemycountry_attack = {0 : 2, 1 : 5}
+enemycountry_defence = {0 : 10, 1 : 30, 2 : 50, 3 : 100}
+enemycountry_attack = {0 : 2, 1 : 5, 2 : 10, 3 : 20}
 
 def printline():
     print("\n==============================\n")
@@ -228,15 +228,27 @@ def weapon_ganha():
 def war():
     printline()
     while True:
+        global enemycountry_defence, soldier
         print(f"이번 나라는 {enemycountry_name[enemycountry]}입니다.")
-        serve_input = input("전쟁을 시작하시려면 1, 나가시려면 2를 입력하세요")
+        print("전쟁을 시작하시려면 1, 나가시려면 2를 입력하세요\n")
+        serve_input = int(input(""))
         if serve_input == 1:
             while True:
                 printline()
-                print(f"{country_name} 군인 수 : {soldier}명 ==================== {enemycountry_name[enemycountry]} 군인 수 : {enemycountry_defence[enemycountry]}")
-                print("\n\n\n\n\n\n")
-                print("  ░░░░░░███████]▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄▄▄[███████░░░░░░ [█████████████████]>\n  ◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤")
-                print("  ▂▄▅█████████▅▄▃▂             ▂▃▄▅█████████▅▄▂")
+                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan} ==================== {enemycountry_name[enemycountry]} 군인 수 : {enemycountry_defence[enemycountry]}  공격력 : {enemycountry_attack[enemycountry]}")
+                if enemycountry_defence[enemycountry] <= 0:
+                    printline()
+                    print(f"{enemycountry_name[enemycountry]}를 이겼습니다!")
+                    break
+                if soldier <= 0:
+                    printline()
+                    print(f"{enemycountry_name[enemycountry]}에게 졌습니다...")
+                    if soldier < 0: soldier = 0 
+                    break
+                enemycountry_defence[enemycountry] -= weapon_gan
+                soldier -= enemycountry_attack[enemycountry]
+                time.sleep(1)
+                printline()
 
         elif serve_input == 2:
             break
@@ -256,7 +268,7 @@ while True:
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}")
     print(f"돈 : {money}  군인 수 : {soldier}  무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})")
-    print("1: 돈벌기\n2: 부대모집\n3: 무기강화\n4: 전쟁시작\n5: 게임을 끄기")
+    print("1: 돈벌기\n2: 부대모집\n3: 무기강화\n4: 전쟁시작\n5: 게임을 끄기\n")
     main_input = input()
     if main_input == "/도움말":
         tutorial()
