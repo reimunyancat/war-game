@@ -85,7 +85,7 @@ def make_money2():
         user_choice = input("홀수인지 짝수인지 선택하세요 (홀수/짝수): ")
         
         if user_choice not in ['홀수', '짝수']:
-            print("제대로 입력")
+            print("제대로 입력해")
             return
 
         computer_number = randint(1, 100)
