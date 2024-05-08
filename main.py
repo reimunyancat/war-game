@@ -213,7 +213,7 @@ def make_soldier():
     print("군인 한명당 1000원입니다\n군인을 몇 명 모집하시겠습니까 ")
     soldier_i = int(input())
     if money < soldier_i*1000:
-        print("허접~거지")
+        print("허접~ 거지주제에 군인이라니")
     else:
         soldier += soldier_i
         money -= soldier_i*1000
