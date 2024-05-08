@@ -1,2 +1,4 @@
 # war-game
-wow
+reimunyancat's war-game
+
+so fun

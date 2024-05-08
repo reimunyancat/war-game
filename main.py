@@ -26,11 +26,11 @@ weapon_random_front = '100%'
 weapon_random = randint(1, 100)
 weapon_random_back = 100
 enemycountry = 0
-enemycountry_name = {0 : '일본', 1 : '중국', 2 : '몽골', 3 : '태국'}
-enemycountry_defence = {0 : 10, 1 : 30, 2 : 50, 3 : 100}
-enemycountry_attack = {0 : 5, 1 : 10, 2 : 20, 3 : 25}
-enemycountry_soldier_reward = {0 : 2, 1 : 5, 2 : 10, 3 : 30}
-enemycountry_money_reward = {0 : 1000, 1 : 5000, 2 : 10000, 3 : 30000}
+enemycountry_name = {0 : '몽골', 1 : '중국', 2 : '태국', 3 : '캄보디아', 4 : '필리핀', 5 : '일본', 6 : '호주'}
+enemycountry_defence = {0 : 10, 1 : 30, 2 : 50, 3 : 100, 4 : 200, 5 : 500}
+enemycountry_attack = {0 : 5, 1 : 10, 2 : 20, 3 : 25, 4 : 40, 5 : 100}
+enemycountry_soldier_reward = {0 : 2, 1 : 5, 2 : 10, 3 : 30, 4 : 50}
+enemycountry_money_reward = {0 : 1000, 1 : 2000, 2 : 3000, 3 : 5000, 4 : 10000}
 
 def printline():
     print("\n\n==============================\n")
@@ -288,7 +288,7 @@ def war():
                     money += enemycountry_money_reward[enemycountry]
                     print(f"군인 {enemycountry_soldier_reward[enemycountry]}명과  돈 {enemycountry_money_reward[enemycountry]}원을 얻었습니다")
                     money_take += 10
-                    if enemycountry % 5 == 0:
+                    if (enemycountry+1) % 5 == 0:
                         money_magnification_1 += 1
                         money_magnification_2 += 1
                     break
