@@ -19,6 +19,8 @@ weapon_gan = 1
 weapon_gan_take = 10
 weapon_name = {0 : '모래', 1 : '돌', 2 : '나무검', 3 : '돌검', 4 : '낫', 5 : '망치', 6 : '도끼', 7 : '칼', 8 : '노트북', 9 : '톱', 10 : '수류탄'}
 money_take = 100
+money_magnification_1 = 4
+money_magnification_2 = 10 
 weapon_ganha_take = 100
 weapon_random_front = '100%'
 weapon_random = randint(1, 100)
@@ -38,7 +40,8 @@ def tutorial():
     print("부대모집은 단순히 사람을 뽑는거고 무기강화는 무기를 강화시키는겁니다")
     print("전투력은 부대수 = HP, 무기 = 공격력입니다")
     print("메인화면에서 잔액과 부대수와 무기강화현황을 볼 수 있습니다")
-    print("나라를 점령할수록 돈벌기 수익이 증가합니다\n")
+    print("나라를 점령하면 군인과 돈을 얻고 점령할수록 돈벌기 수익이 증가합니다")
+    print("나라를 5개 점령하면 도박수익이 증가합니다\n")
 
 def make_money():
     printline()
@@ -69,7 +72,7 @@ def make_money2ex():
 def make_money2():
     global money
     printline()
-    print("홀짝 게임을 시작합니다!\n성공하신다면 베팅금액을 4배로 획득하실수 있습니다.\n실패하시면 베팅금액을 잃습니다.")
+    print(f"홀짝 게임을 시작합니다!\n성공하신다면 베팅금액을 {money_magnification_1}배로 획득하실수 있습니다.\n실패하시면 베팅금액을 잃습니다.")
     
     while(True):
         print(f"현재 돈 : {money}")
@@ -92,7 +95,7 @@ def make_money2():
         print(f"컴퓨터가 선택한 숫자는 {computer_number}입니다.")
         
         if (computer_number % 2 == 0 and user_choice == '짝수') or (computer_number % 2 != 0 and user_choice == '홀수'):
-            money += betting*4-money
+            money += betting*money_magnification_1-money
             print("축하합니다! 이겼습니다.")
         else:
             money -= betting
@@ -135,7 +138,7 @@ def make_money3():
         else:
             return 0
 
-    print("블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 10배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다.")
+    print(f"블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 {money_magnification_2}배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다.")
     
     while True:
         print(f"현재 돈 : {money}")
@@ -188,7 +191,7 @@ def make_money3():
 
         if dealer_hand_value > 21 or player_hand_value > dealer_hand_value:
             print("플레이어 승리!")
-            money += betting * 10 - money
+            money += betting * money_magnification_2 - money
         elif dealer_hand_value > player_hand_value:
             print("딜러 승리!")
             money -= betting
@@ -198,7 +201,7 @@ def make_money3():
 
             if player_priority > dealer_priority:
                 print("플레이어 승리!")
-                money += betting * 10 - money
+                money += betting * money_magnification_2 - money
             elif player_priority < dealer_priority:
                 print("딜러 승리!")
                 money -= betting
@@ -265,7 +268,7 @@ def weapon_ganha():
 
 
 def war():
-    global enemycountry_defence, soldier, enemycountry, money
+    global enemycountry_defence, soldier, enemycountry, money, money_take, money_magnification_1, money_magnification_2
     printline()
     while True:
         print(f"이번 나라는 {enemycountry_name[enemycountry]}입니다.")
@@ -279,10 +282,15 @@ def war():
                 print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan} ==================== {enemycountry_name[enemycountry]} 군인 수 : {enemycountry_defence[enemycountry]}  공격력 : {enemycountry_attack[enemycountry]}")
                 if enemycountry_defence[enemycountry] <= 0:
                     printline()
+                    enemycountry += 1
                     print(f"{enemycountry_name[enemycountry]}를 이겼습니다!")
                     soldier += enemycountry_soldier_reward[enemycountry]
                     money += enemycountry_money_reward[enemycountry]
                     print(f"군인 {enemycountry_soldier_reward[enemycountry]}명과  돈 {enemycountry_money_reward[enemycountry]}원을 얻었습니다")
+                    money_take += 10
+                    if enemycountry % 5 == 0:
+                        money_magnification_1 += 1
+                        money_magnification_2 += 1
                     break
                 if soldier <= 0:
                     printline()
@@ -293,7 +301,6 @@ def war():
                 soldier -= enemycountry_attack[enemycountry]
                 time.sleep(1)
                 printline()
-                enemycountry += 1
 
         elif serve_input == 2:
             print("에휴")
