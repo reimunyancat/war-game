@@ -245,19 +245,20 @@ def weapon_ganha():
                 return
 
             weapon_random = randint(1, 100)
+            money -= int(weapon_ganha_take)
             if weapon_random <= weapon_random_back:
                 weapon += 1
                 if weapon_gan == 1:
-                    weapon_gan += 9
-                else:
                     weapon_gan += int(weapon_gan_take)
-                money -= int(weapon_ganha_take)
                 if weapon < 10:
                     weapon_gan_take *= 1.2
                     weapon_ganha_take *= 1.1
                 elif weapon < 20:
                     weapon_gan_take *= 1.5
-                    weapon_ganha_take *= 1.2
+                    weapon_ganha_take *= 1.5
+                elif weapon < 30:
+                    weapon_gan_take *= 1.7
+                    weapon_ganha_take *= 1.8
                 weapon_random_back -= weapon_random_back * 0.2
                 weapon_random_front = str(weapon_random_back) + "%"
                 print("\n강화 성공!")
@@ -290,7 +291,6 @@ def war():
                 print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan} ==================== {enemycountry_name[enemycountry]} 군인 수 : {enemycountry_defence[enemycountry]}  공격력 : {enemycountry_attack[enemycountry]}")
                 if enemycountry_defence[enemycountry] <= 0:
                     printline()
-                    enemycountry += 1
                     print(f"{enemycountry_name[enemycountry]}를 이겼습니다!")
                     soldier += enemycountry_soldier_reward[enemycountry]
                     money += enemycountry_money_reward[enemycountry]
@@ -299,6 +299,7 @@ def war():
                     if (enemycountry+1) % 5 == 0:
                         money_magnification_1 += 1
                         money_magnification_2 += 1
+                    enemycountry += 1
                     break
                 if soldier <= 0:
                     printline()
