@@ -34,7 +34,7 @@ enemycountry_name = {0 : '몽골', 1 : '중국', 2 : '태국', 3 : '캄보디아
                      40 : '멕시코', 41 : 'NASA', 42 : '라스베가스', 43 : '할리우드', 44 : '알래스카',45 : '미국', 46 : '하와이', 47 : '북한', 48 : '한국', 49 : '달', 50 : '화성',
                      51 : '수성', 52 : '금성', 53 : '목성', 54 : '토성', 55 : '천왕성', 56 : '해왕성', 57 : '태양', 58 : '명왕성', 59 : '견우성', 60 : '천랑성', 61 : '직녀성',
                      62 : '알데바란', 63 : '베텔게우스', 64 : '디네프', 65 : '리겔', 66 : '시리우스', 67 : '안드로메다', 68 : '중성자별', 69 : '블랙홀', 70 : '빅뱅'}
-enemycountry_defence = {0 : 10, 1 : 30, 2 : 50, 3 : 100, 4 : 200, 5 : 500, 6 : 1000, 7 : 3000, 8 : 5000, 9 : 10000, 10 : 20000}
+enemycountry_defence = {0 : 10, 1 : 30, 2 : 50, 3 : 100, 4 : 200, 5 : 500, 6 : 1000, 7 : 3000, 8 : 5000, 9 : 10000, 10 : 20000, 11 : 40000, 12 : 75000, 13 : 100000}
 enemycountry_attack = {0 : 5, 1 : 10, 2 : 20, 3 : 25, 4 : 40, 5 : 100, 6 : 150, 7 : 250, 8 : 500, 9 : 700, 10 : 1000}
 enemycountry_soldier_reward = {0 : 2, 1 : 5, 2 : 10, 3 : 30, 4 : 50, 5 : 100, 6 : 200, 7 : 500, 8 : 1000, 9 : 2000}
 enemycountry_money_reward = {0 : 1000, 1 : 2000, 2 : 3000, 3 : 4000, 4 : 5000, 5 : 10000, 6 : 20000, 7 : 50000, 8 : 100000, 9 : 200000, 10 : 500000}
@@ -277,6 +277,7 @@ def weapon_ganha():
 def war():
     global enemycountry_defence, soldier, enemycountry, money, money_take, money_magnification_1, money_magnification_2
     printline()
+    tmp = enemycountry_defence[enemycountry]
     while True:
         print(f"이번 나라는 {enemycountry_name[enemycountry]}입니다.")
         print("전쟁을 시작하시려면 1, 나가시려면 2를 입력하세요\n")
@@ -303,6 +304,7 @@ def war():
                     printline()
                     if soldier < 0: soldier = 0 
                     print(f"{enemycountry_name[enemycountry]}에게 졌습니다...")
+                    enemycountry_defence[enemycountry] = tmp
                     break
                 enemycountry_defence[enemycountry] -= weapon_gan
                 soldier -= enemycountry_attack[enemycountry]
