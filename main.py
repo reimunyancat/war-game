@@ -145,9 +145,11 @@ def make_money3():
         else:
             return 0
 
-    print(f"블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 {money_magnification_2}배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다.")
-    
+    print(f"블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 {money_magnification_2}배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다\n포기하시면 베팅금액의 절반을 얻습니다.")
+    a = 0
     while True:
+        if a == 1:
+            break
         print(f"현재 돈 : {money}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
@@ -171,13 +173,16 @@ def make_money3():
         print(f"플레이어의 현재 카드 합계: {player_hand_value}")
 
         while player_hand_value < 22:
-            action = input("카드를 더 받으시겠습니까? (y/n): ").lower()
+            action = input("카드를 더 받으시겠습니까?(포기 : f) (y/n/f): ").lower()
             if action == 'y':
                 player_hand.append(deck.pop())
                 print(f"플레이어가 받은 카드: {player_hand[-1]['rank']} of {player_hand[-1]['suit']}")
                 player_hand_value = calculate_hand_value(player_hand)
                 print(f"플레이어의 현재 카드 합계: {player_hand_value}")
             elif action == 'n':
+                break
+            elif action == 'f':
+                a = 1
                 break
 
         if player_hand_value > 21:
