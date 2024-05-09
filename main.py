@@ -149,6 +149,7 @@ def make_money3():
     a = 0
     while True:
         if a == 1:
+            money -= betting/2
             break
         print(f"현재 돈 : {money}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
