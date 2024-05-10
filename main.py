@@ -18,7 +18,7 @@ weapon = 0
 weapon_gan = 1
 weapon_gan_take = 10
 weapon_name = {0 : '모래', 1 : '돌', 2 : '나무검', 3 : '돌검', 4 : '낫', 5 : '망치', 6 : '도끼', 7 : '칼', 8 : '노트북', 9 : '톱', 10 : '수류탄', 11 : '조총'
-               ,11 : '권총'}
+               ,11 : '권총', 12 : '자동권총', 13 : '소총'}
 money_take = 100
 money_magnification_1 = 4
 money_magnification_2 = 10 
@@ -36,9 +36,9 @@ enemycountry_name = {0 : '몽골', 1 : '중국', 2 : '태국', 3 : '캄보디아
                      62 : '알데바란', 63 : '베텔게우스', 64 : '디네프', 65 : '리겔', 66 : '시리우스', 67 : '안드로메다', 68 : '중성자별', 69 : '블랙홀', 70 : '빅뱅'}
 enemycountry_defence = {0 : 10, 1 : 30, 2 : 50, 3 : 100, 4 : 200, 5 : 500, 6 : 1000, 7 : 3000, 8 : 5000, 9 : 10000, 10 : 20000, 11 : 40000, 12 : 75000, 13 : 100000,
                         14 : 150000, 15 : 300000, 16 : 750000, 17 : 1000000, 18 : 1500000, 19 : 4000000, 20 : 8000000, 21 : 13000000}
-enemycountry_attack = {0 : 5, 1 : 10, 2 : 20, 3 : 25, 4 : 40, 5 : 100, 6 : 150, 7 : 250, 8 : 500, 9 : 700, 10 : 1000, 11 : 3000, 12 : 5000, 13 : 8000}
-enemycountry_soldier_reward = {0 : 2, 1 : 5, 2 : 10, 3 : 30, 4 : 50, 5 : 100, 6 : 200, 7 : 500, 8 : 1000, 9 : 2000}
-enemycountry_money_reward = {0 : 1000, 1 : 2000, 2 : 3000, 3 : 4000, 4 : 5000, 5 : 10000, 6 : 20000, 7 : 50000, 8 : 100000, 9 : 200000, 10 : 500000}
+enemycountry_attack = {0 : 5, 1 : 10, 2 : 20, 3 : 25, 4 : 40, 5 : 100, 6 : 150, 7 : 250, 8 : 500, 9 : 700, 10 : 1000, 11 : 3000, 12 : 5000, 13 : 8000, 14 : 10000, 15 : 20000, 16 : 30000}
+enemycountry_soldier_reward = {0 : 2, 1 : 5, 2 : 10, 3 : 30, 4 : 50, 5 : 100, 6 : 200, 7 : 500, 8 : 1000, 9 : 2000, 10 : 5000}
+enemycountry_money_reward = {0 : 1000, 1 : 3000, 2 : 5000, 3 : 7000, 4 : 10000, 5 : 15000, 6 : 30000, 7 : 50000, 8 : 75000, 9 : 100000, 10 : 200000, 11 : 500000}
 betting = 0
 ex = 0
 
@@ -57,6 +57,22 @@ def tutorial():
     print("메인화면에서 잔액과 부대수와 무기강화현황을 볼 수 있습니다")
     print("나라를 점령하면 군인과 돈을 얻고 점령할수록 돈벌기 수익이 증가합니다")
     print("나라를 5개 점령하면 도박수익이 증가합니다\n")
+
+def soldier_display_f():
+    global soldier, soldier_display
+    soldier_display = soldier
+    if soldier >= 1000000:
+        soldier_display = str(soldier)
+        for i in range(0, 6):
+            soldier_display[i+1] = soldier_display[i]
+        soldier_display[1] = ','
+        soldier_display[4] = ','
+        
+    elif soldier >= 1000:
+        soldier_display = str(soldier)
+        for i in range(0, 3):
+            soldier_display[i+1] = soldier_display[i]
+        soldier_display[1] = ','
 
 def make_money():
     printline()
@@ -250,7 +266,8 @@ def make_soldier():
     else:
         soldier += soldier_i
         money -= soldier_i*1000
-        print("현재 군인수는", soldier,"명입니다")
+        soldier_display_f()
+        print("현재 군인수는", soldier_display,"명입니다")
 
 
 def weapon_ganha():
@@ -351,9 +368,10 @@ main_name = input("유저 이름을 입력하세요 : ")
 print("\n'/도움말'을 입력하세요")
 
 while True:
+    soldier_display_f()
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}")
-    print(f"돈 : {int(money)}  군인 수 : {soldier}  무기 : {weapon_name[weapon]} (공격력 : {int(weapon_gan)})")
+    print(f"돈 : {int(money)}  군인 수 : {soldier_display}  무기 : {weapon_name[weapon]} (공격력 : {int(weapon_gan)})")
     print("1: 돈벌기\n2: 부대모집\n3: 무기강화\n4: 전쟁시작\n5: 게임을 끄기\n")
     main_input = input()
     if main_input == "/도움말":
