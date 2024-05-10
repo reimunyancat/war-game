@@ -38,6 +38,14 @@ enemycountry_defence = {0 : 10, 1 : 30, 2 : 50, 3 : 100, 4 : 200, 5 : 500, 6 : 1
 enemycountry_attack = {0 : 5, 1 : 10, 2 : 20, 3 : 25, 4 : 40, 5 : 100, 6 : 150, 7 : 250, 8 : 500, 9 : 700, 10 : 1000}
 enemycountry_soldier_reward = {0 : 2, 1 : 5, 2 : 10, 3 : 30, 4 : 50, 5 : 100, 6 : 200, 7 : 500, 8 : 1000, 9 : 2000}
 enemycountry_money_reward = {0 : 1000, 1 : 2000, 2 : 3000, 3 : 4000, 4 : 5000, 5 : 10000, 6 : 20000, 7 : 50000, 8 : 100000, 9 : 200000, 10 : 500000}
+betting = 0
+ex = 0
+
+def back():
+    if betting <= 0:
+        print("대출은 사절입니다")
+        ex = 1
+            
 
 def printline():
     print("\n\n==============================\n")
@@ -92,6 +100,9 @@ def make_money2():
             break
 
         betting = int(input("베팅 금액을 입력하세요: "))
+        back()
+        if ex == 1:
+            break
         user_choice = input("홀수인지 짝수인지 선택하세요 (홀수/짝수): ")
         
         if user_choice not in ['홀수', '짝수']:
@@ -148,9 +159,6 @@ def make_money3():
     print(f"블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 {money_magnification_2}배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다\n포기하시면 베팅금액의 절반을 얻습니다.")
     a = 0
     while True:
-        if a == 1:
-            money -= betting/2
-            break
         print(f"현재 돈 : {money}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
@@ -161,6 +169,9 @@ def make_money3():
             break
 
         betting = int(input("베팅 금액을 입력하세요: "))
+        back()
+        if ex == 1:
+            break
 
         deck = initialize_deck()
         player_hand = [deck.pop(), deck.pop()]
@@ -183,8 +194,12 @@ def make_money3():
             elif action == 'n':
                 break
             elif action == 'f':
-                a = 1
+                forgive = 1
                 break
+
+        if forgive == 1:
+            money -= betting/2
+            break
 
         if player_hand_value > 21:
             print("카드 합계가 21을 넘었습니다. 플레이어 패배!")
@@ -228,6 +243,7 @@ def make_soldier():
     printline()
     print("군인 한명당 1000원입니다\n군인을 몇 명 모집하시겠습니까 ")
     soldier_i = int(input())
+    back()
     if money < soldier_i*1000:
         print("허접~ 거지주제에 군인이라니")
     else:
