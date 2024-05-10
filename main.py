@@ -119,6 +119,7 @@ def make_money2():
         back()
         if ex == 1:
             break
+
         user_choice = input("홀수인지 짝수인지 선택하세요 (홀수/짝수): ")
         
         if user_choice not in ['홀수', '짝수']:
@@ -173,8 +174,8 @@ def make_money3():
             return 0
 
     print(f"블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 {money_magnification_2}배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다\n포기하시면 베팅금액의 절반을 얻습니다.")
-    a = 0
     while True:
+        forgive = 0
         print(f"현재 돈 : {money}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
@@ -210,47 +211,48 @@ def make_money3():
             elif action == 'n':
                 break
             elif action == 'f':
+                print("허접~")
                 forgive = 1
                 break
 
         if forgive == 1:
-            money -= betting/2
+            money -= int(betting/2)
             break
-
-        if player_hand_value > 21:
-            print("카드 합계가 21을 넘었습니다. 플레이어 패배!")
-            money -= betting
-            return
-
-        while True:
-            dealer_hand_value = calculate_hand_value(dealer_hand)
-            if dealer_hand_value >= 17:
-                break
-            dealer_hand.append(deck.pop())
-
-        print("딜러의 최종 카드:")
-        for card in dealer_hand:
-            print(f" {card['rank']} of {card['suit']}")
-        print(f"딜러의 최종 카드 합계: {dealer_hand_value}")
-
-        if dealer_hand_value > 21 or player_hand_value > dealer_hand_value:
-            print("플레이어 승리!")
-            money += betting * money_magnification_2 - money
-        elif dealer_hand_value > player_hand_value:
-            print("딜러 승리!")
-            money -= betting
         else:
-            player_priority = max([card_priority(card) for card in player_hand])
-            dealer_priority = max([card_priority(card) for card in dealer_hand])
+            if player_hand_value > 21:
+                print("카드 합계가 21을 넘었습니다. 플레이어 패배!")
+                money -= betting
+                return
 
-            if player_priority > dealer_priority:
+            while True:
+                dealer_hand_value = calculate_hand_value(dealer_hand)
+                if dealer_hand_value >= 17:
+                    break
+                dealer_hand.append(deck.pop())
+
+            print("딜러의 최종 카드:")
+            for card in dealer_hand:
+                print(f" {card['rank']} of {card['suit']}")
+            print(f"딜러의 최종 카드 합계: {dealer_hand_value}")
+
+            if dealer_hand_value > 21 or player_hand_value > dealer_hand_value:
                 print("플레이어 승리!")
                 money += betting * money_magnification_2 - money
-            elif player_priority < dealer_priority:
+            elif dealer_hand_value > player_hand_value:
                 print("딜러 승리!")
                 money -= betting
             else:
-                print("무승부")
+                player_priority = max([card_priority(card) for card in player_hand])
+                dealer_priority = max([card_priority(card) for card in dealer_hand])
+
+                if player_priority > dealer_priority:
+                    print("플레이어 승리!")
+                    money += betting * money_magnification_2 - money
+                elif player_priority < dealer_priority:
+                    print("딜러 승리!")
+                    money -= betting
+                else:
+                    print("무승부")
         
 
 def make_soldier():
