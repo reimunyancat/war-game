@@ -318,7 +318,6 @@ def weapon_ganha():
 def war():
     global enemycountry_defence, soldier, enemycountry, money, money_take, money_magnification_1, money_magnification_2
     printline()
-    tmp = enemycountry_defence[enemycountry]
     while True:
         print(f"이번 나라는 {enemycountry_name[enemycountry]}입니다.")
         print("전쟁을 시작하시려면 1, 나가시려면 2를 입력하세요\n")
@@ -345,7 +344,6 @@ def war():
                     printline()
                     if soldier < 0: soldier = 0 
                     print(f"{enemycountry_name[enemycountry]}에게 졌습니다...")
-                    enemycountry_defence[enemycountry] = tmp
                     break
                 enemycountry_defence[enemycountry] -= weapon_gan
                 soldier -= enemycountry_attack[enemycountry]
