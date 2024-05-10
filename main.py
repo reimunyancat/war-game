@@ -237,7 +237,6 @@ def make_money3():
                 print("무승부")
         
 
-
 def make_soldier():
     global money, soldier
     printline()
