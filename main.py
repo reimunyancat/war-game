@@ -73,6 +73,22 @@ def soldier_display_f():
             soldier_display[i+1] = soldier_display[i]
         soldier_display[1] = ','
 
+def money_display_f():
+    global money, money_display
+    money_display = money
+    if money >= 1000000:
+        money_display = str(money)
+        for i in range(0, 6):
+            money_display[i+1] = money_display[i]
+        money_display[1] = ','
+        money_display[4] = ','
+        
+    elif money >= 1000:
+        money_display = str(money)
+        for i in range(0, 3):
+            money_display[i+1] = money_display[i]
+        money_display[1] = ','
+
 def make_money():
     printline()
     print("1 : 깡노동  2 : 도박")
@@ -362,10 +378,11 @@ main_name = input("유저 이름을 입력하세요 : ")
 print("\n'/도움말'을 입력하세요")
 
 def menu():
+    money_display_f()
     soldier_display_f()
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}\n")
-    print(f"돈 : {int(money)}\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {int(weapon_gan)})\n")
+    print(f"돈 : {money_display}\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {int(weapon_gan)})\n")
     print("1: 돈벌기  2: 부대모집  3: 무기강화  4: 전쟁시작  5: 게임종료")
     main_input = input()
     if main_input == "/도움말": tutorial()
