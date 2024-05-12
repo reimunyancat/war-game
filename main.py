@@ -59,35 +59,19 @@ def tutorial():
 
 def soldier_display_f():
     global soldier, soldier_display
-    soldier_display = soldier
+    soldier_display = str(soldier)
     if soldier >= 1000000:
-        soldier_display = str(soldier)
-        for i in range(0, 6):
-            soldier_display[i+1] = soldier_display[i]
-        soldier_display[1] = ','
-        soldier_display[4] = ','
-        
+        soldier_display = soldier_display[:-6] + ',' + soldier_display[-6:-3] + ',' + soldier_display[-3:]
     elif soldier >= 1000:
-        soldier_display = str(soldier)
-        for i in range(0, 3):
-            soldier_display[i+1] = soldier_display[i]
-        soldier_display[1] = ','
+        soldier_display = soldier_display[:-3] + ',' + soldier_display[-3:]
 
 def money_display_f():
     global money, money_display
-    money_display = money
+    money_display = str(money)
     if money >= 1000000:
-        money_display = str(money)
-        for i in range(0, 6):
-            money_display[i+1] = money_display[i]
-        money_display[1] = ','
-        money_display[4] = ','
-        
+        money_display = money_display[:-6] + ',' + money_display[-6:-3] + ',' + money_display[-3:]
     elif money >= 1000:
-        money_display = str(money)
-        for i in range(0, 3):
-            money_display[i+1] = money_display[i]
-        money_display[1] = ','
+        money_display = money_display[:-3] + ',' + money_display[-3:]
 
 def make_money():
     printline()
