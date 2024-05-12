@@ -1,6 +1,8 @@
-import datetime, time, sys, random
-# import PIL.Image
+import time, random
 from random import randint
+# import datetime
+# import sys
+# import PIL.Image
 # import pygame
 # from pygame.locals import *
 
@@ -41,12 +43,12 @@ enemycountry_attack = {0 : 5, 1 : 10, 2 : 20, 3 : 25, 4 : 40, 5 : 100, 6 : 150, 
                        18 : 75000, 19 : 100000}
 enemycountry_soldier_reward = {0 : 2, 1 : 5, 2 : 10, 3 : 30, 4 : 50, 5 : 100, 6 : 200, 7 : 500, 8 : 1000, 9 : 2000, 10 : 5000}
 enemycountry_money_reward = {0 : 1000, 1 : 3000, 2 : 5000, 3 : 7000, 4 : 10000, 5 : 15000, 6 : 30000, 7 : 50000, 8 : 75000, 9 : 100000, 10 : 200000, 11 : 500000}
-betting = 0
 
-def back():
+def back(betting):
     if betting <= 0:
-        print("대출은 사절입니다")
-        exit()  
+        print("참 웃기다")
+        return False
+    return True
 
 def printline():
     print("\n\n==============================\n")
@@ -117,7 +119,8 @@ def make_money2():
             break
 
         betting = int(input("베팅 금액을 입력하세요: "))
-        back()
+        if not back(betting):
+            continue
 
         user_choice = input("홀수인지 짝수인지 선택하세요 (홀수/짝수): ")
         
@@ -185,7 +188,8 @@ def make_money3():
             break
 
         betting = int(input("베팅 금액을 입력하세요: "))
-        back()
+        if not back(betting):
+            continue
 
         deck = initialize_deck()
         player_hand = [deck.pop(), deck.pop()]
@@ -257,9 +261,10 @@ def make_soldier():
     printline()
     print("군인 한명당 1000원입니다\n군인을 몇 명 모집하시겠습니까 ")
     soldier_i = int(input())
-    back()
+    if not back(soldier_i):
+        print("?")
 
-    if money < soldier_i*1000:
+    elif money < soldier_i*1000:
         print("허접~ 거지주제에 군인이라니")
     else:
         soldier += soldier_i
