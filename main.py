@@ -45,7 +45,7 @@ ex = 0
 def back():
     if betting <= 0:
         print("대출은 사절입니다")
-        ex = 1      
+        exit()  
 
 def printline():
     print("\n\n==============================\n")
@@ -117,8 +117,6 @@ def make_money2():
 
         betting = int(input("베팅 금액을 입력하세요: "))
         back()
-        if ex == 1:
-            break
 
         user_choice = input("홀수인지 짝수인지 선택하세요 (홀수/짝수): ")
         
@@ -187,8 +185,6 @@ def make_money3():
 
         betting = int(input("베팅 금액을 입력하세요: "))
         back()
-        if ex == 1:
-            break
 
         deck = initialize_deck()
         player_hand = [deck.pop(), deck.pop()]
@@ -261,8 +257,7 @@ def make_soldier():
     print("군인 한명당 1000원입니다\n군인을 몇 명 모집하시겠습니까 ")
     soldier_i = int(input())
     back()
-    if ex == 1:
-        return
+
     if money < soldier_i*1000:
         print("허접~ 거지주제에 군인이라니")
     else:
