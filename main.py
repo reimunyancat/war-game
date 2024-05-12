@@ -295,7 +295,7 @@ def weapon_ganha():
                 elif weapon < 30:
                     weapon_gan_take *= 1.7
                     weapon_ganha_take *= 1.8
-                weapon_random_back -= weapon_random_back * 0.2
+                weapon_random_back -= int(weapon_random_back) * 0.41
                 weapon_random_front = str(weapon_random_back) + "%"
                 print("\n강화 성공!")
                 printline()
