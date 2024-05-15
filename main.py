@@ -29,20 +29,80 @@ weapon_random_front = '100%'
 weapon_random = randint(1, 100)
 weapon_random_back = 100
 enemycountry = 0
-enemycountry_name = {0 : '몽골', 1 : '중국', 2 : '태국', 3 : '캄보디아', 4 : '필리핀', 5 : '일본', 6 : '호주', 7 : '싱가포르', 8 : '몰디브', 9 : '인도', 10 : '네팔',
-                     11 : '두바이', 12 : '사우디아라비아', 13 : '케냐', 14 : '마다가스카르', 15 : '남아프리카', 16 : '가나', 17 : '사하라사막', 18 : '이집트', 19 : '터키',
-                     20 : '러시아', 21 : '그리스', 22 : '이탈리아', 23 : '모나코', 24 : '스페인', 25 : '프랑스', 26 : '독일', 27 : '덴마크', 28 : '노르웨이', 29 : '영국',
-                     30 : '그린란드', 31 : '캐나다', 32 : '뉴욕', 33 : '버뮤다', 34 : '자메이카', 35 : '콜롬비아', 36 : '브라질', 37 : '아르헨티나', 38 : '마추픽추', 39 : '이스터 섬',
-                     40 : '멕시코', 41 : 'NASA', 42 : '라스베가스', 43 : '할리우드', 44 : '알래스카',45 : '미국', 46 : '하와이', 47 : '북한', 48 : '한국', 49 : '달', 50 : '화성',
-                     51 : '수성', 52 : '금성', 53 : '목성', 54 : '토성', 55 : '천왕성', 56 : '해왕성', 57 : '태양', 58 : '명왕성', 59 : '견우성', 60 : '천랑성', 61 : '직녀성',
-                     62 : '알데바란', 63 : '베텔게우스', 64 : '디네프', 65 : '리겔', 66 : '시리우스', 67 : '안드로메다', 68 : '중성자별', 69 : '블랙홀', 70 : '빅뱅'}
-enemycountry_defence = {0 : 10, 1 : 30, 2 : 50, 3 : 100, 4 : 200, 5 : 500, 6 : 1000, 7 : 3000, 8 : 5000, 9 : 10000, 10 : 20000, 11 : 40000, 12 : 75000, 13 : 100000,
-                        14 : 150000, 15 : 300000, 16 : 750000, 17 : 1000000, 18 : 1500000, 19 : 4000000, 20 : 8000000, 21 : 13000000, 22 : 15000000, 23 : 18000000,
-                        24 : 20000000, 25 : 25000000, 26 : 30000000}
-enemycountry_attack = {0 : 5, 1 : 10, 2 : 20, 3 : 25, 4 : 40, 5 : 100, 6 : 150, 7 : 250, 8 : 500, 9 : 700, 10 : 1000, 11 : 3000, 12 : 5000, 13 : 8000, 14 : 10000,
-                       15 : 20000, 16 : 30000, 17 : 50000, 18 : 75000, 19 : 100000}
-enemycountry_soldier_reward = {0 : 2, 1 : 5, 2 : 10, 3 : 30, 4 : 50, 5 : 100, 6 : 200, 7 : 500, 8 : 1000, 9 : 2000, 10 : 5000}
-enemycountry_money_reward = {0 : 1000, 1 : 3000, 2 : 5000, 3 : 7000, 4 : 10000, 5 : 15000, 6 : 30000, 7 : 50000, 8 : 75000, 9 : 100000, 10 : 200000, 11 : 500000}
+enemy_countries = {
+    0: {'enemy_country_name': '몽골', 'enemy_country_defence': 10, 'enemy_country_attack': 5, 'enemy_country_soldier_reward': 2, 'enemy_country_money_reward': 1000},
+    1: {'enemy_country_name': '중국', 'enemy_country_defence': 30, 'enemy_country_attack': 10, 'enemy_country_soldier_reward': 5, 'enemy_country_money_reward': 3000},
+    2: {'enemy_country_name': '태국', 'enemy_country_defence': 50, 'enemy_country_attack': 20, 'enemy_country_soldier_reward': 10, 'enemy_country_money_reward': 5000},
+    3: {'enemy_country_name': '캄보디아', 'enemy_country_defence': 100, 'enemy_country_attack': 25, 'enemy_country_soldier_reward': 30, 'enemy_country_money_reward': 7000},
+    4: {'enemy_country_name': '필리핀', 'enemy_country_defence': 200, 'enemy_country_attack': 40, 'enemy_country_soldier_reward': 50, 'enemy_country_money_reward': 10000},
+    5: {'enemy_country_name': '일본', 'enemy_country_defence': 500, 'enemy_country_attack': 100, 'enemy_country_soldier_reward': 100, 'enemy_country_money_reward': 15000},
+    6: {'enemy_country_name': '호주', 'enemy_country_defence': 1000, 'enemy_country_attack': 150, 'enemy_country_soldier_reward': 200, 'enemy_country_money_reward': 30000},
+    7: {'enemy_country_name': '싱가포르', 'enemy_country_defence': 3000, 'enemy_country_attack': 250, 'enemy_country_soldier_reward': 500, 'enemy_country_money_reward': 50000},
+    8: {'enemy_country_name': '몰디브', 'enemy_country_defence': 5000, 'enemy_country_attack': 500, 'enemy_country_soldier_reward': 1000, 'enemy_country_money_reward': 75000},
+    9: {'enemy_country_name': '인도', 'enemy_country_defence': 10000, 'enemy_country_attack': 700, 'enemy_country_soldier_reward': 2000, 'enemy_country_money_reward': 100000},
+    10: {'enemy_country_name': '네팔', 'enemy_country_defence': 20000, 'enemy_country_attack': 1000, 'enemy_country_soldier_reward': 5000, 'enemy_country_money_reward': 200000},
+    11: {'enemy_country_name': '두바이', 'enemy_country_defence': 40000, 'enemy_country_attack': 3000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': 500000},
+    12: {'enemy_country_name': '사우디아라비아', 'enemy_country_defence': 75000, 'enemy_country_attack': 5000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    13: {'enemy_country_name': '케냐', 'enemy_country_defence': 100000, 'enemy_country_attack': 8000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    14: {'enemy_country_name': '마다가스카르', 'enemy_country_defence': 150000, 'enemy_country_attack': 10000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    15: {'enemy_country_name': '남아프리카', 'enemy_country_defence': 300000, 'enemy_country_attack': 20000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    16: {'enemy_country_name': '가나', 'enemy_country_defence': 750000, 'enemy_country_attack': 30000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    17: {'enemy_country_name': '사하라사막', 'enemy_country_defence': 1000000, 'enemy_country_attack': 50000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    18: {'enemy_country_name': '이집트', 'enemy_country_defence': 1500000, 'enemy_country_attack': 75000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    19: {'enemy_country_name': '터키', 'enemy_country_defence': 4000000, 'enemy_country_attack': 100000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    20: {'enemy_country_name': '러시아', 'enemy_country_defence': 8000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    21: {'enemy_country_name': '그리스', 'enemy_country_defence': 13000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    22: {'enemy_country_name': '이탈리아', 'enemy_country_defence': 15000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    23: {'enemy_country_name': '모나코', 'enemy_country_defence': 18000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    24: {'enemy_country_name': '스페인', 'enemy_country_defence': 20000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    25: {'enemy_country_name': '프랑스', 'enemy_country_defence': 25000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    26: {'enemy_country_name': '독일', 'enemy_country_defence': 30000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    27: {'enemy_country_name': '덴마크', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    28: {'enemy_country_name': '노르웨이', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    29: {'enemy_country_name': '영국', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    30: {'enemy_country_name': '그린란드', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    31: {'enemy_country_name': '캐나다', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    32: {'enemy_country_name': '뉴욕', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    33: {'enemy_country_name': '버뮤다', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    34: {'enemy_country_name': '자메이카', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    35: {'enemy_country_name': '콜롬비아', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    36: {'enemy_country_name': '브라질', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    37: {'enemy_country_name': '아르헨티나', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    38: {'enemy_country_name': '마추픽추', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    39: {'enemy_country_name': '이스터 섬', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    40: {'enemy_country_name': '멕시코', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    41: {'enemy_country_name': 'NASA', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    42: {'enemy_country_name': '라스베가스', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    43: {'enemy_country_name': '할리우드', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    44: {'enemy_country_name': '알래스카', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    45: {'enemy_country_name': '미국', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    46: {'enemy_country_name': '하와이', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    47: {'enemy_country_name': '북한', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    48: {'enemy_country_name': '한국', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    49: {'enemy_country_name': '달', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    50: {'enemy_country_name': '화성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    51: {'enemy_country_name': '수성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    52: {'enemy_country_name': '금성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    53: {'enemy_country_name': '목성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    54: {'enemy_country_name': '토성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    55: {'enemy_country_name': '천왕성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    56: {'enemy_country_name': '해왕성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    57: {'enemy_country_name': '태양', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    58: {'enemy_country_name': '명왕성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    59: {'enemy_country_name': '견우성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    60: {'enemy_country_name': '천랑성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    61: {'enemy_country_name': '직녀성', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    62: {'enemy_country_name': '알데바란', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    63: {'enemy_country_name': '베텔게우스', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    64: {'enemy_country_name': '디네프', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    65: {'enemy_country_name': '리겔', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    66: {'enemy_country_name': '시리우스', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    67: {'enemy_country_name': '안드로메다', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    68: {'enemy_country_name': '중성자별', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    69: {'enemy_country_name': '블랙홀', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    70: {'enemy_country_name': '빅뱅', 'enemy_country_defence': None, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+}
+
 
 def back(betting):
     if betting <= 0:
@@ -319,41 +379,43 @@ def weapon_ganha():
 
 
 def war():
-    global enemycountry_defence, soldier, enemycountry, money, money_take, money_magnification_1, money_magnification_2
-    printline()
+    global soldier, enemycountry, money, money_take, money_magnification_1, money_magnification_2, enemy_countries
+    
     while True:
-        print(f"이번 나라는 {enemycountry_name[enemycountry]}입니다.")
+        printline()
+        print(f"이번 나라는 {enemy_countries[enemycountry]['enemy_country_name']}입니다.")
         print("전쟁을 시작하시려면 1, 나가시려면 2를 입력하세요\n")
         serve_input = int(input(""))
         if serve_input == 1:
             while True:
                 printline()
-                if enemycountry_defence[enemycountry] < 0:
-                    enemycountry_defence[enemycountry] = 0
-                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan} ==================== {enemycountry_name[enemycountry]} 군인 수 : {enemycountry_defence[enemycountry]}  공격력 : {enemycountry_attack[enemycountry]}")
-                if enemycountry_defence[enemycountry] <= 0:
+                if enemy_countries[enemycountry]['enemy_country_defence'] < 0:
+                    enemy_countries[enemycountry]['enemy_country_defence'] = 0
+                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan} ==================== {enemy_countries[enemycountry]['enemy_country_name']} 군인 수 : {enemy_countries[enemycountry]['enemy_country_defence']}  공격력 : {enemy_countries[enemycountry]['enemy_country_attack']}")
+
+                if enemy_countries[enemycountry]['enemy_country_defence'] < 0:
+                    enemy_countries[enemycountry]['enemy_country_defence'] = 0
+
+                if enemy_countries[enemycountry]['enemy_country_defence'] == 0:
                     printline()
-                    print(f"{enemycountry_name[enemycountry]}를 이겼습니다!")
-                    soldier += enemycountry_soldier_reward[enemycountry]
-                    money += enemycountry_money_reward[enemycountry]
-                    print(f"군인 {enemycountry_soldier_reward[enemycountry]}명과  돈 {enemycountry_money_reward[enemycountry]}원을 얻었습니다")
+                    print(f"{enemy_countries[enemycountry]['enemy_country_name']}를 이겼습니다!")
+                    soldier += enemy_countries[enemycountry]['enemy_country_soldier_reward']
+                    money += enemy_countries[enemycountry]['enemy_country_money_reward']
+                    print(f"군인 {enemy_countries[enemycountry]['enemy_country_soldier_reward']}명과  돈 {enemy_countries[enemycountry]['enemy_country_money_reward']}원을 얻었습니다")
                     money_take += 10
                     if (enemycountry+1) % 5 == 0:
                         money_magnification_1 += 1
                         money_magnification_2 += 1
                     enemycountry += 1
                     break
-                if soldier <= 0:
-                    printline()
-                    if soldier < 0: soldier = 0 
-                    print(f"{enemycountry_name[enemycountry]}에게 졌습니다...")
-                    break
-                enemycountry_defence[enemycountry] -= weapon_gan
-                soldier -= enemycountry_attack[enemycountry]
-                time.sleep(1)
-                printline()
+                if soldier < 0: soldier = 0 
 
-        elif serve_input == 2:
+                if soldier == 0:
+                    printline()
+                    print(f"{enemy_countries[enemycountry]['enemy_country_name']}의 공격에 의해 패배하였습니다.")
+                    break
+                time.sleep(1)
+        else: 
             print("에휴")
             break
     
