@@ -30,6 +30,7 @@ weapon_random_front = '100%'
 weapon_random = randint(1, 100)
 weapon_random_back = 100
 enemycountry = 0
+
 class EnemyCountry:
     def __init__(self, name, defence, attack, soldier_reward, money_reward):
         self.name = name
@@ -37,6 +38,14 @@ class EnemyCountry:
         self.attack = attack
         self.soldier_reward = soldier_reward
         self.money_reward = money_reward
+
+class EnemyCountry:
+    def __init__(self, name, population, military, defense, resources):
+        self.name = name
+        self.population = population
+        self.military = military
+        self.defense = defense
+        self.resources = resources
 
 enemy_countries = {
     0: EnemyCountry('몽골', 10, 5, 2, 1000),
@@ -61,58 +70,56 @@ enemy_countries = {
     19: EnemyCountry('터키', 4000000, 100000, 240000, 150000000),
     20: EnemyCountry('러시아', 8000000, 150000, 270000, 200000000),
     21: EnemyCountry('그리스', 13000000, 200000, 330000, 230000000),
-    22: EnemyCountry('이탈리아', 15000000, 400000, 370000, 250000000),
-    23: EnemyCountry('모나코', 18000000, 750000, 400000, 300000000),
-    24: EnemyCountry('스페인', 20000000, 1200000, 500000, 400000000),
-    25: EnemyCountry('프랑스', 25000000, 2000000, 750000, None),
-    26: EnemyCountry('독일', 30000000, None, None, None),
-    27: EnemyCountry('덴마크', None, None, None, None),
-    28: EnemyCountry('노르웨이', None, None, None, None),
-    29: EnemyCountry('영국', None, None, None, None),
-    30: EnemyCountry('그린란드', None, None, None, None),
-    31: EnemyCountry('캐나다', None, None, None, None),
-    32: EnemyCountry('뉴욕', None, None, None, None),
-    33: EnemyCountry('버뮤다', None, None, None, None),
-    34: EnemyCountry('자메이카', None, None, None, None),
-    35: EnemyCountry('콜롬비아', None, None, None, None),
-    36: EnemyCountry('브라질', None, None, None, None),
-    37: EnemyCountry('아르헨티나', None, None, None, None),
-    38: EnemyCountry('마추픽추', None, None, None, None),
-    39: EnemyCountry('이스터 섬', None, None, None, None),
-    40: EnemyCountry('멕시코', None, None, None, None),
-    41: EnemyCountry('NASA', None, None, None, None),
-    42: EnemyCountry('라스베가스', None, None, None, None),
-    43: EnemyCountry('할리우드', None, None, None, None),
-    44: EnemyCountry('알래스카', None, None, None, None),
-    45: EnemyCountry('미국', None, None, None, None),
-    46: EnemyCountry('하와이', None, None, None, None),
-    47: EnemyCountry('북한', None, None, None, None),
-    48: EnemyCountry('한국', None, None, None, None),
-    49: EnemyCountry('달', None, None, None, None),
-    50: EnemyCountry('화성', None, None, None, None),
-    51: EnemyCountry('수성', None, None, None, None),
-    52: EnemyCountry('금성', None, None, None, None),
-    53: EnemyCountry('목성', None, None, None, None),
-    54: EnemyCountry('토성', None, None, None, None),
-    55: EnemyCountry('천왕성', None, None, None, None),
-    56: EnemyCountry('해왕성', None, None, None, None),
-    57: EnemyCountry('태양', None, None, None, None),
-    58: EnemyCountry('명왕성', None, None, None, None),
-    59: EnemyCountry('견우성', None, None, None, None),
-    60: EnemyCountry('천랑성', None, None, None, None),
-    61: EnemyCountry('직녀성', None, None, None, None),
-    62: EnemyCountry('알데바란', None, None, None, None),
-    63: EnemyCountry('베텔게우스', None, None, None, None),
-    64: EnemyCountry('디네프', None, None, None, None),
-    65: EnemyCountry('리겔', None, None, None, None),
-    66: EnemyCountry('시리우스', None, None, None, None),
-    67: EnemyCountry('안드로메다', None, None, None, None),
-    68: EnemyCountry('중성자별', None, None, None, None),
-    69: EnemyCountry('블랙홀', None, None, None, None),
-    70: EnemyCountry('빅뱅', None, None, None, None),
+    22: EnemyCountry('이탈리아', 18000000, 300000, 370000, 260000000),
+    23: EnemyCountry('모나코', 25000000, 500000, 400000, 300000000),
+    24: EnemyCountry('스페인', 35000000, 700000, 500000, 400000000),
+    25: EnemyCountry('프랑스', 50000000, 1000000, 750000, 800000000),
+    26: EnemyCountry('독일', 75000000, 1500000, 1000000, 1500000000),
+    27: EnemyCountry('덴마크', 100000000, 2000000, 1500000, 2000000000),
+    28: EnemyCountry('노르웨이', 140000000, 3000000, 2000000, 2500000000),
+    29: EnemyCountry('영국', 190000000, 4500000, 2500000, 3000000000),
+    30: EnemyCountry('그린란드', 250000000, 6000000, 3000000, 3500000000),
+    31: EnemyCountry('캐나다', 330000000, 10000000, 4000000, 4500000000),
+    32: EnemyCountry('뉴욕', 440000000, 17000000, 5000000, 5000000000),
+    33: EnemyCountry('버뮤다', 600000000, 25000000, 6000000, 5500000000),
+    34: EnemyCountry('자메이카', 800000000, 35000000, 7000000, 6000000000),
+    35: EnemyCountry('콜롬비아', 1000000000, 45000000, 8000000, 6500000000),
+    36: EnemyCountry('브라질', 1300000000, 60000000, 9000000, 7000000000),
+    37: EnemyCountry('아르헨티나', 1600000000, 80000000, 10000000, 7500000000),
+    38: EnemyCountry('마추픽추', 2000000000, 100000000, 11000000, 8000000000),
+    39: EnemyCountry('이스터 섬', 2500000000, 120000000, 12000000, 8500000000),
+    40: EnemyCountry('멕시코', 3000000000, 150000000, 13000000, 9000000000),
+    41: EnemyCountry('NASA', 3600000000, 180000000, 14000000, 9500000000),
+    42: EnemyCountry('라스베가스', 4300000000, 220000000, 15000000, 10000000000),
+    43: EnemyCountry('할리우드', 5000000000, 270000000, 16000000, 10500000000),
+    44: EnemyCountry('알래스카', 5700000000, 330000000, 17000000, 11000000000),
+    45: EnemyCountry('미국', 6400000000, 400000000, 18000000, 11500000000),
+    46: EnemyCountry('하와이', 7100000000, 500000000, 19000000, 12000000000),
+    47: EnemyCountry('북한', 7800000000, 600000000, 20000000, 12500000000),
+    48: EnemyCountry('한국', 8500000000, 700000000, 21000000, 13000000000),
+    49: EnemyCountry('달', 9200000000, 800000000, 22000000, 13500000000),
+    50: EnemyCountry('화성', 9900000000, 900000000, 23000000, 14000000000),
+    51: EnemyCountry('수성', 10600000000, 1000000000, 24000000, 14500000000),
+    52: EnemyCountry('금성', 11300000000, 1200000000, 25000000, 15000000000),
+    53: EnemyCountry('목성', 12000000000, 1500000000, 26000000, 15500000000),
+    54: EnemyCountry('토성', 12700000000, 1800000000, 27000000, 16000000000),
+    55: EnemyCountry('천왕성', 13400000000, 2200000000, 28000000, 16500000000),
+    56: EnemyCountry('해왕성', 14100000000, 2700000000, 29000000, 17000000000),
+    57: EnemyCountry('태양', 14800000000, 3300000000, 30000000, 17500000000),
+    58: EnemyCountry('명왕성', 15500000000, 4000000000, 31000000, 18000000000),
+    59: EnemyCountry('견우성', 16200000000, 5000000000, 32000000, 18500000000),
+    60: EnemyCountry('천랑성', 16900000000, 6000000000, 33000000, 19000000000),
+    61: EnemyCountry('직녀성', 17600000000, 7000000000, 34000000, 19500000000),
+    62: EnemyCountry('알데바란', 18300000000, 8000000000, 35000000, 20000000000),
+    63: EnemyCountry('베텔게우스', 19000000000, 9000000000, 36000000, 20500000000),
+    64: EnemyCountry('디네프', 19700000000, 10000000000, 37000000, 21000000000),
+    65: EnemyCountry('리겔', 20400000000, 12000000000, 38000000, 21500000000),
+    66: EnemyCountry('시리우스', 21100000000, 15000000000, 39000000, 22000000000),
+    67: EnemyCountry('안드로메다', 21800000000, 18000000000, 40000000, 22500000000),
+    68: EnemyCountry('중성자별', 22500000000, 22000000000, 41000000, 23000000000),
+    69: EnemyCountry('블랙홀', 50000000000, 50000000000, 10000000, 50000000000),
+    70: EnemyCountry('빅뱅', 10000000000000, 5000000000000, None, None),
 }
-
-
 
 def back(betting):
     if betting <= 0:
@@ -399,15 +406,22 @@ def weapon_ganha():
                 if weapon_gan == 1:
                     weapon_gan += int(weapon_gan_take)
                 if weapon < 10:
+                    weapon_gan += weapon_gan_take
                     weapon_gan_take *= 1.2
                     weapon_ganha_take *= 1.1
                 elif weapon < 20:
+                    weapon_gan += weapon_gan_take
                     weapon_gan_take *= 1.5
                     weapon_ganha_take *= 1.5
                 elif weapon < 30:
+                    weapon_gan += weapon_gan_take
                     weapon_gan_take *= 1.7
                     weapon_ganha_take *= 1.8
-                weapon_random_back -= int(weapon_random_back) * 0.41
+                elif weapon < 40:
+                    weapon_gan += weapon_gan_take
+                    weapon_gan_take *= 2
+                    weapon_ganha_take *= 2
+                weapon_random_back -= int(weapon_random_back) * 0.21
                 weapon_random_front = str(weapon_random_back) + "%"
                 print("\n강화 성공!")
                 printline()
@@ -428,41 +442,43 @@ def war():
     
     while True:
         printline()
-        print(f"이번 나라는 {enemy_countries[enemycountry]['enemy_country_name']}입니다.")
+        print(f"이번 나라는 {enemy_countries[enemycountry].name}입니다.")
         print("전쟁을 시작하시려면 1, 나가시려면 2를 입력하세요\n")
         serve_input = int(input(""))
         if serve_input == 1:
             while True:
                 printline()
-                if enemy_countries[enemycountry]['enemy_country_defence'] < 0:
-                    enemy_countries[enemycountry]['enemy_country_defence'] = 0
-                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan}" + "=" * 15 + "{enemy_countries[enemycountry]['enemy_country_name']} 군인 수 : {enemy_countries[enemycountry]['enemy_country_defence']}  공격력 : {enemy_countries[enemycountry]['enemy_country_attack']}")
+                if enemy_countries[enemycountry].defence < 0:
+                    enemy_countries[enemycountry].defence = 0
+                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan}" + "=" * 15 + f"{enemy_countries[enemycountry].name} 군인 수 : {enemy_countries[enemycountry].defence}  공격력 : {enemy_countries[enemycountry].attack}")
 
-                if enemy_countries[enemycountry]['enemy_country_defence'] < 0:
-                    enemy_countries[enemycountry]['enemy_country_defence'] = 0
+                if enemy_countries[enemycountry].defence < 0:
+                    enemy_countries[enemycountry].defence = 0
 
-                if enemy_countries[enemycountry]['enemy_country_defence'] == 0:
+                if enemy_countries[enemycountry].defence == 0:
                     printline()
-                    print(f"{enemy_countries[enemycountry]['enemy_country_name']}를 이겼습니다!")
-                    soldier += enemy_countries[enemycountry]['enemy_country_soldier_reward']
-                    money += enemy_countries[enemycountry]['enemy_country_money_reward']
-                    print(f"군인 {enemy_countries[enemycountry]['enemy_country_soldier_reward']}명과  돈 {enemy_countries[enemycountry]['enemy_country_money_reward']}원을 얻었습니다")
+                    print(f"{enemy_countries[enemycountry].name}를 이겼습니다!")
+                    soldier += enemy_countries[enemycountry].soldier_reward
+                    money += enemy_countries[enemycountry].money_reward
+                    print(f"군인 {enemy_countries[enemycountry].soldier_reward}명과  돈 {enemy_countries[enemycountry].money_reward}원을 얻었습니다")
                     money_take += 10
                     if (enemycountry+1) % 5 == 0:
                         money_magnification_1 += 1
                         money_magnification_2 += 1
                     enemycountry += 1
                     break
-                if soldier < 0: soldier = 0 
+                if soldier < 0:
+                    soldier = 0 
 
                 if soldier == 0:
                     printline()
-                    print(f"{enemy_countries[enemycountry]['enemy_country_name']}의 공격에 의해 패배하였습니다.")
+                    print(f"{enemy_countries[enemycountry].name}의 공격에 의해 패배하였습니다.")
                     break
                 time.sleep(1)
         else: 
             print("에휴")
             break
+
     
 printline()
 
