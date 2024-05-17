@@ -166,7 +166,8 @@ def make_money1():
         money += money_take
         time.sleep(1)
         money_input -= 1
-    print("현재 돈은", money,"원 입니다")
+        money_display_f()
+    print("현재 돈은", money_display,"원 입니다")
 
 def make_money2ex():
     printline()
@@ -370,7 +371,7 @@ def make_soldier():
             print("You are an idiot")
 
         elif money < soldier_i*1000000000:
-            print("허접~ 거지주제에 탱크라니")
+            print("허접~ 거지주제에 전투기라니")
         else:
             soldier += soldier_i*15000
             money -= soldier_i*1000000000
