@@ -39,14 +39,6 @@ class EnemyCountry:
         self.soldier_reward = soldier_reward
         self.money_reward = money_reward
 
-class EnemyCountry:
-    def __init__(self, name, population, military, defense, resources):
-        self.name = name
-        self.population = population
-        self.military = military
-        self.defense = defense
-        self.resources = resources
-
 enemy_countries = {
     0: EnemyCountry('몽골', 10, 5, 2, 1000),
     1: EnemyCountry('중국', 30, 10, 5, 3000),
