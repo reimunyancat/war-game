@@ -351,7 +351,7 @@ def make_soldier():
             print("현재 군인수는", soldier_display,"명입니다")
 
     elif military == 2:
-        print("탱크 한대당 1,000,000원입니다\n군인은 120명이 모집됩니다\n탱크를 몇 개 사시겠습니까")
+        print("탱크 한대당 1,000,000원입니다\n군인은 1,200명이 모집됩니다\n탱크를 몇 개 사시겠습니까")
         soldier_i = int(input())
         if not back(soldier_i):
             print("You are an idiot")
@@ -365,7 +365,21 @@ def make_soldier():
             print("현재 군인수는", soldier_display,"명입니다")
 
     elif military == 3:
-        print("전투기 한대당 1,000,000,000원입니다\n군인은 15000명이 모집됩니다\n전투기를 몇 개 사시겠습니까")
+        print("전투기 한대당 1,000,000,000원입니다\n군인은 1,500,000명이 모집됩니다\n전투기를 몇 개 사시겠습니까")
+        soldier_i = int(input())
+        if not back(soldier_i):
+            print("You are an idiot")
+
+        elif money < soldier_i*1000000000:
+            print("허접~ 거지주제에 전투기라니")
+        else:
+            soldier += soldier_i*15000
+            money -= soldier_i*1000000000
+            soldier_display_f()
+            print("현재 군인수는", soldier_display,"명입니다")
+    
+    elif military == 4:
+        print("핵미사일 한개당 1,000,000,000,000,000원입니다\n군인은 15,000,000,000,000명이 모집됩니다\n핵미사일을 몇 개 사시겠습니까")
         soldier_i = int(input())
         if not back(soldier_i):
             print("You are an idiot")
