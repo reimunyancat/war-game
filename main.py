@@ -502,12 +502,15 @@ def menu():
 def main():
     while True:
         menu()
+        ending(enemycountry)
 
 if __name__ == '__main__':
     main()
 
-def ending():
-    
+def ending(enemycountry):
+    if enemycountry == 70:
+        print("축하드립니다")
+        exit()
 
 # def main():
 #     pygame.init()
