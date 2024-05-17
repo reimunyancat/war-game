@@ -41,19 +41,19 @@ enemy_countries = {
     8: {'enemy_country_name': '몰디브', 'enemy_country_defence': 5000, 'enemy_country_attack': 500, 'enemy_country_soldier_reward': 1000, 'enemy_country_money_reward': 75000},
     9: {'enemy_country_name': '인도', 'enemy_country_defence': 10000, 'enemy_country_attack': 700, 'enemy_country_soldier_reward': 2000, 'enemy_country_money_reward': 100000},
     10: {'enemy_country_name': '네팔', 'enemy_country_defence': 20000, 'enemy_country_attack': 1000, 'enemy_country_soldier_reward': 5000, 'enemy_country_money_reward': 200000},
-    11: {'enemy_country_name': '두바이', 'enemy_country_defence': 40000, 'enemy_country_attack': 3000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': 500000},
-    12: {'enemy_country_name': '사우디아라비아', 'enemy_country_defence': 75000, 'enemy_country_attack': 5000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    13: {'enemy_country_name': '케냐', 'enemy_country_defence': 100000, 'enemy_country_attack': 8000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    14: {'enemy_country_name': '마다가스카르', 'enemy_country_defence': 150000, 'enemy_country_attack': 10000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    15: {'enemy_country_name': '남아프리카', 'enemy_country_defence': 300000, 'enemy_country_attack': 20000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    16: {'enemy_country_name': '가나', 'enemy_country_defence': 750000, 'enemy_country_attack': 30000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    17: {'enemy_country_name': '사하라사막', 'enemy_country_defence': 1000000, 'enemy_country_attack': 50000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    18: {'enemy_country_name': '이집트', 'enemy_country_defence': 1500000, 'enemy_country_attack': 75000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    19: {'enemy_country_name': '터키', 'enemy_country_defence': 4000000, 'enemy_country_attack': 100000, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    20: {'enemy_country_name': '러시아', 'enemy_country_defence': 8000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    21: {'enemy_country_name': '그리스', 'enemy_country_defence': 13000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    22: {'enemy_country_name': '이탈리아', 'enemy_country_defence': 15000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
-    23: {'enemy_country_name': '모나코', 'enemy_country_defence': 18000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
+    11: {'enemy_country_name': '두바이', 'enemy_country_defence': 40000, 'enemy_country_attack': 3000, 'enemy_country_soldier_reward': 8000, 'enemy_country_money_reward': 500000},
+    12: {'enemy_country_name': '사우디아라비아', 'enemy_country_defence': 75000, 'enemy_country_attack': 5000, 'enemy_country_soldier_reward': 10000, 'enemy_country_money_reward': 750000},
+    13: {'enemy_country_name': '케냐', 'enemy_country_defence': 100000, 'enemy_country_attack': 8000, 'enemy_country_soldier_reward': 15000, 'enemy_country_money_reward': 1200000},
+    14: {'enemy_country_name': '마다가스카르', 'enemy_country_defence': 150000, 'enemy_country_attack': 10000, 'enemy_country_soldier_reward': 20000, 'enemy_country_money_reward': 1500000},
+    15: {'enemy_country_name': '남아프리카', 'enemy_country_defence': 300000, 'enemy_country_attack': 20000, 'enemy_country_soldier_reward': 60000, 'enemy_country_money_reward': 20000000},
+    16: {'enemy_country_name': '가나', 'enemy_country_defence': 750000, 'enemy_country_attack': 30000, 'enemy_country_soldier_reward': 80000, 'enemy_country_money_reward': 50000000},
+    17: {'enemy_country_name': '사하라사막', 'enemy_country_defence': 1000000, 'enemy_country_attack': 50000, 'enemy_country_soldier_reward': 130000, 'enemy_country_money_reward': 80000000},
+    18: {'enemy_country_name': '이집트', 'enemy_country_defence': 1500000, 'enemy_country_attack': 75000, 'enemy_country_soldier_reward': 175000, 'enemy_country_money_reward': 110000000},
+    19: {'enemy_country_name': '터키', 'enemy_country_defence': 4000000, 'enemy_country_attack': 100000, 'enemy_country_soldier_reward': 240000, 'enemy_country_money_reward': 150000000},
+    20: {'enemy_country_name': '러시아', 'enemy_country_defence': 8000000, 'enemy_country_attack': 150000, 'enemy_country_soldier_reward': 270000, 'enemy_country_money_reward': 200000000},
+    21: {'enemy_country_name': '그리스', 'enemy_country_defence': 13000000, 'enemy_country_attack': 200000, 'enemy_country_soldier_reward': 330000, 'enemy_country_money_reward': 230000000},
+    22: {'enemy_country_name': '이탈리아', 'enemy_country_defence': 15000000, 'enemy_country_attack': 400000, 'enemy_country_soldier_reward': 370000, 'enemy_country_money_reward': 250000000},
+    23: {'enemy_country_name': '모나코', 'enemy_country_defence': 18000000, 'enemy_country_attack': 750000, 'enemy_country_soldier_reward': 400000, 'enemy_country_money_reward': 300000000},
     24: {'enemy_country_name': '스페인', 'enemy_country_defence': 20000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
     25: {'enemy_country_name': '프랑스', 'enemy_country_defence': 25000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
     26: {'enemy_country_name': '독일', 'enemy_country_defence': 30000000, 'enemy_country_attack': None, 'enemy_country_soldier_reward': None, 'enemy_country_money_reward': None},
@@ -106,7 +106,7 @@ enemy_countries = {
 
 def back(betting):
     if betting <= 0:
-        print("참 웃기다")
+        print("\aYou are an idiot")
         return False
     return True
 
@@ -244,7 +244,7 @@ def make_money3():
             break
 
         if money <= 0:
-            print("돈도 없으면서 뭔 도박이야")
+            print("You are an idiot")
             break
 
         betting = int(input("베팅 금액을 입력하세요: "))
@@ -319,18 +319,35 @@ def make_money3():
 def make_soldier():
     global money, soldier
     printline()
-    print("군인 한명당 1000원입니다\n군인을 몇 명 모집하시겠습니까 ")
-    soldier_i = int(input())
-    if not back(soldier_i):
-        print("?")
+    print(f"현재 돈 : {money_display}")
+    print("1 : 군인(1,000원)  2 : 탱크(1,000,000원) 3 : 전투기(1,000,000,000원)")
+    military = int(input())
+    if military == 1:
+        print("군인 한명당 1,000원입니다\n군인을 몇 명 모집하시겠습니까")
+        soldier_i = int(input())
+        if not back(soldier_i):
+            print("You are an idiot")
 
-    elif money < soldier_i*1000:
-        print("허접~ 거지주제에 군인이라니")
-    else:
-        soldier += soldier_i
-        money -= soldier_i*1000
-        soldier_display_f()
-        print("현재 군인수는", soldier_display,"명입니다")
+        elif money < soldier_i*1000:
+            print("허접~ 거지주제에 군인이라니")
+        else:
+            soldier += soldier_i
+            money -= soldier_i*1000000
+            soldier_display_f()
+            print("현재 군인수는", soldier_display,"명입니다")
+    elif military == 2:
+        print("탱크 한개당 1,000,000원입니다\n군인은 120명이 모집됩니다\n탱크를 몇 개 사시겠습니까")
+        soldier_i = int(input())
+        if not back(soldier_i):
+            print("You are an idiot")
+
+        elif money < soldier_i*1000:
+            print("허접~ 거지주제에 탱크라니")
+        else:
+            soldier += soldier_i*120
+            money -= soldier_i*1000000
+            soldier_display_f()
+            print("현재 군인수는", soldier_display,"명입니다")
 
 
 def weapon_ganha():
@@ -344,7 +361,7 @@ def weapon_ganha():
 
         if serve_input == '/강화':
             if money - weapon_ganha_take < 0:
-                print("돈부터 벌으세요")
+                print("You are an idiot")
                 return
 
             weapon_random = randint(1, 100)
@@ -391,7 +408,7 @@ def war():
                 printline()
                 if enemy_countries[enemycountry]['enemy_country_defence'] < 0:
                     enemy_countries[enemycountry]['enemy_country_defence'] = 0
-                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan} ==================== {enemy_countries[enemycountry]['enemy_country_name']} 군인 수 : {enemy_countries[enemycountry]['enemy_country_defence']}  공격력 : {enemy_countries[enemycountry]['enemy_country_attack']}")
+                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan}" + "=" * 15 + "{enemy_countries[enemycountry]['enemy_country_name']} 군인 수 : {enemy_countries[enemycountry]['enemy_country_defence']}  공격력 : {enemy_countries[enemycountry]['enemy_country_attack']}")
 
                 if enemy_countries[enemycountry]['enemy_country_defence'] < 0:
                     enemy_countries[enemycountry]['enemy_country_defence'] = 0
