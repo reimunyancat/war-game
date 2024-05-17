@@ -506,6 +506,9 @@ def main():
 if __name__ == '__main__':
     main()
 
+def ending():
+    
+
 # def main():
 #     pygame.init()
 #     display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
