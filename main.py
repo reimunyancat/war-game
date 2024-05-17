@@ -335,13 +335,14 @@ def make_soldier():
             money -= soldier_i*1000000
             soldier_display_f()
             print("현재 군인수는", soldier_display,"명입니다")
+
     elif military == 2:
-        print("탱크 한개당 1,000,000원입니다\n군인은 120명이 모집됩니다\n탱크를 몇 개 사시겠습니까")
+        print("탱크 한대당 1,000,000원입니다\n군인은 120명이 모집됩니다\n탱크를 몇 개 사시겠습니까")
         soldier_i = int(input())
         if not back(soldier_i):
             print("You are an idiot")
 
-        elif money < soldier_i*1000:
+        elif money < soldier_i*1000000:
             print("허접~ 거지주제에 탱크라니")
         else:
             soldier += soldier_i*120
@@ -349,6 +350,19 @@ def make_soldier():
             soldier_display_f()
             print("현재 군인수는", soldier_display,"명입니다")
 
+    elif military == 3:
+        print("전투기 한대당 1,000,000,000원입니다\n군인은 15000명이 모집됩니다\n전투기를 몇 개 사시겠습니까")
+        soldier_i = int(input())
+        if not back(soldier_i):
+            print("You are an idiot")
+
+        elif money < soldier_i*1000000000:
+            print("허접~ 거지주제에 탱크라니")
+        else:
+            soldier += soldier_i*15000
+            money -= soldier_i*1000000000
+            soldier_display_f()
+            print("현재 군인수는", soldier_display,"명입니다")
 
 def weapon_ganha():
     global money, weapon_ganha_take, weapon_gan, weapon, weapon_name, weapon_random_back, weapon_random_front, weapon_gan_take
