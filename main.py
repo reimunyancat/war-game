@@ -359,7 +359,7 @@ def make_soldier():
         elif money < soldier_i*1000000:
             print("허접~ 거지주제에 탱크라니")
         else:
-            soldier += soldier_i*120
+            soldier += soldier_i*1200
             money -= soldier_i*1000000
             soldier_display_f()
             print("현재 군인수는", soldier_display,"명입니다")
@@ -373,7 +373,7 @@ def make_soldier():
         elif money < soldier_i*1000000000:
             print("허접~ 거지주제에 전투기라니")
         else:
-            soldier += soldier_i*15000
+            soldier += soldier_i*1500000
             money -= soldier_i*1000000000
             soldier_display_f()
             print("현재 군인수는", soldier_display,"명입니다")
@@ -384,11 +384,11 @@ def make_soldier():
         if not back(soldier_i):
             print("You are an idiot")
 
-        elif money < soldier_i*1000000000:
+        elif money < soldier_i*1000000000000000:
             print("허접~ 거지주제에 전투기라니")
         else:
-            soldier += soldier_i*15000
-            money -= soldier_i*1000000000
+            soldier += soldier_i*15000000000000
+            money -= soldier_i*1000000000000000
             soldier_display_f()
             print("현재 군인수는", soldier_display,"명입니다")
 
