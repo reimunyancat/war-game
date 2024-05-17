@@ -115,8 +115,8 @@ def printline():
 
 def tutorial():
     printline()
-    print("부대모집은 단순히 사람을 뽑는거고 무기강화는 무기를 강화시키는겁니다")
-    print("전투력은 부대수 = HP, 무기 = 공격력입니다")
+    print("부대모집은 군인을 사는거고 무기강화는 무기를 강화시키는겁니다")
+    print("전투력은 군인수 = HP, 무기 = 공격력입니다")
     print("메인화면에서 잔액과 부대수와 무기강화현황을 볼 수 있습니다")
     print("나라를 점령하면 군인과 돈을 얻고 점령할수록 돈벌기 수익이 증가합니다")
     print("나라를 5개 점령하면 도박수익이 증가합니다\n")
@@ -132,6 +132,8 @@ def soldier_display_f():
 def money_display_f():
     global money, money_display
     money_display = str(money)
+    if money >= 1000000000:
+        money_display = money_display[:-9] + ',' + money_display[-9:-6] + ',' + money_display[-6:-3] + ',' + money_display[-3:]
     if money >= 1000000:
         money_display = money_display[:-6] + ',' + money_display[-6:-3] + ',' + money_display[-3:]
     elif money >= 1000:
