@@ -183,7 +183,7 @@ def make_money2():
     print(f"홀짝 게임을 시작합니다!\n성공하신다면 베팅금액을 {money_magnification_1}배로 획득하실수 있습니다.\n실패하시면 베팅금액을 잃습니다.")
     
     while(True):
-        print(f"현재 돈 : {money}")
+        print(f"현재 돈 : {money_display}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
             break
@@ -513,6 +513,11 @@ def menu():
     elif main_input == '4': war()
     elif main_input == '5': exit()
 
+def ending(enemycountry):
+    if enemycountry == 70:
+        print("축하드립니다")
+        exit()
+
 def main():
     while True:
         menu()
@@ -520,11 +525,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-def ending(enemycountry):
-    if enemycountry == 70:
-        print("축하드립니다")
-        exit()
 
 # def main():
 #     pygame.init()
