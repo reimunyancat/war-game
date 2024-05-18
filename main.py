@@ -1,10 +1,11 @@
-import time, random
+import time
+import random
+# import pygame
+# from pygame.locals import *
 from random import randint
 # import datetime
 # import sys
 # import PIL.Image
-# import pygame
-# from pygame.locals import *
 
 # FPS = 30
 # FramePerSec = pygame.time.Clock()
