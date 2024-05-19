@@ -338,6 +338,7 @@ def make_money3():
 def make_soldier():
     global money, soldier
     printline()
+    money_display = money_display_f()
     print(f"현재 돈 : {money_display}\n")
     print("1 : 군인(1,000원)  2 : 탱크(1,000,000원) 3 : 전투기(1,000,000,000원) 4 : 핵미사일(1,000,000,000,000,000원)")
     military = int(input())
@@ -402,8 +403,9 @@ def weapon_ganha():
     
     printline()
     while True:
+        money_display = money_display_f()
         print(f"현재 강화 수치는 {weapon_name[weapon]} ({weapon})입니다\n강화 비용은 {int(weapon_ganha_take)}입니다\n강화 확률은 {weapon_random_front}입니다.")
-        print(f"현재 돈 : {int(money)}")
+        print(f"현재 돈 : {money_display}")
         serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면 '/튀튀'를 입력하세요\n")
 
         if serve_input == '/강화':
