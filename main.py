@@ -438,18 +438,22 @@ def weapon_ganha():
                     weapon_ganha_take *= 1.5
                 elif weapon < 30:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 1.7
-                    weapon_ganha_take *= 1.8
+                    weapon_gan_take *= 2
+                    weapon_ganha_take *= 2.2
                 elif weapon < 40:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 2
-                    weapon_ganha_take *= 2
-                weapon_random_back -= int(weapon_random_back) * 0.21
+                    weapon_gan_take *= 2.7
+                    weapon_ganha_take *= 3
+                elif weapon < 50:
+                    weapon_gan += int(weapon_gan_take)
+                    weapon_gan_take *= 3.5
+                    weapon_ganha_take *= 3.9
+                weapon_random_back -= int(weapon_random_back) * 0.25
                 weapon_random_front = str(weapon_random_back) + "%"
                 print("\n강화 성공!")
                 printline()
             else:
-                money -= weapon_ganha_take
+                money -= int(weapon_ganha_take)
                 print("\n강화 실패 ㅋㅋㅋㅋ")
                 printline()
             
@@ -519,7 +523,7 @@ def menu():
     soldier_display = soldier_display_f()
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}\n")
-    print(f"돈 : {money_display}\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})\n")
+    print(f"돈 : {money_display}원\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})\n")
     print("1: 돈벌기  2: 부대모집  3: 무기강화  4: 전쟁시작  5: 게임종료")
     main_input = input()
     if main_input == "/도움말": tutorial()
