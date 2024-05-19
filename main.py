@@ -255,7 +255,7 @@ def make_money3():
     print(f"블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 {money_magnification_2}배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다\n포기하시면 베팅금액의 절반을 얻습니다.")
     while True:
         forgive = 0
-        print(f"현재 돈 : {money}")
+        print(f"현재 돈 : {money_display}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
             break
@@ -502,8 +502,8 @@ main_name = input("유저 이름을 입력하세요 : ")
 print("\n'/도움말'을 입력하세요")
 
 def menu():
-    money_display_f()
-    soldier_display_f()
+    money_display = money_display_f()
+    soldier_display = soldier_display_f()
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}\n")
     print(f"돈 : {money_display}\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {int(weapon_gan)})\n")
