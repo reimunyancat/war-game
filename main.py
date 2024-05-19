@@ -20,9 +20,18 @@ soldier = 0
 weapon = 0
 weapon_gan = 1
 weapon_gan_take = 10
-weapon_name = {0 : '모래', 1 : '돌', 2 : '나무검', 3 : '돌검', 4 : '낫', 5 : '망치', 6 : '도끼', 7 : '칼', 8 : '노트북', 9 : '톱', 10 : '수류탄',
-               11 : '조총', 12 : '권총', 13 : '자동권총', 14 : '소총', 15 : '돌격소총', 16 : '기관총', 17 : '저격총', 18 : '탱크', 19 : '전함', 20 : "전투기",
-               21 : '폭격기', 22 : '포탄', 23 : '화염방사기',}
+weapon_name = {
+    0: '모래', 1: '돌', 2: '나무검', 3: '돌검', 4: '낫', 5: '망치', 6: '도끼', 7: '칼', 8: '노트북', 9: '톱', 10: '수류탄',
+    11: '조총', 12: '권총', 13: '자동권총', 14: '소총', 15: '돌격소총', 16: '기관총', 17: '저격총', 18: '탱크', 19: '전함', 20: '전투기',
+    21: '폭격기', 22: '포탄', 23: '화염방사기', 24: '레이저 무기', 25: 'EMP 발사기', 26: '드론', 27: '사이버 공격 장비', 28: '위성 무기', 29: '양자 무기',
+    30: '바이오 무기', 31: '전자기 펄스', 32: '중력 폭탄', 33: '플라즈마 총', 34: '핵 미사일', 35: '안티 매터 폭탄', 36: '다크 매터 폭탄', 37: '시간 왜곡 장치', 38: '차원 이동 장치', 39: '우주 전함',
+    40: '인공 지능 로봇 군단', 41: '나노 머신 스웜', 42: '퀀텀 해킹 도구', 43: '가상 현실 조종 장치', 44: '심리전 전파기', 45: '에너지 방패', 46: '테라포밍 장치', 47: '블랙홀 생성기', 48: '우주 파괴 레이저', 49: '창조의 손',
+    50: '초신성 폭발 장치', 51: '시간 역행 기계', 52: '우주 재구성기', 53: '현실 조작기', 54: '차원 붕괴기', 55: '우주 재설정 버튼', 56: '무한 에너지 생성기', 57: '영원의 샘', 58: '존재 삭제 총', 59: '무한의 거울',
+    60: '혼돈의 망치', 61: '순수의 검', 62: '파멸의 도끼', 63: '재생의 방패', 64: '파괴의 창', 65: '창조의 활', 66: '삭제의 단검', 67: '변형의 지팡이', 68: '통제의 왕관', 69: '지배의 왕좌',
+    70: '종말의 책', 71: '시작의 문', 72: '무한의 계단', 73: '존재의 키', 74: '비밀의 상자', 75: '지식의 도서관', 76: '영혼의 우물', 77: '생명의 나무', 78: '죽음의 그림자', 79: '삶의 빛',
+    80: '현실의 벽', 81: '환상의 문', 82: '가능성의 창', 83: '불가능의 방', 84: '무의 미로', 85: '유의 정원', 86: '잊혀진 섬', 87: '기억의 바다', 88: '상상의 산맥', 89: '현실의 평원',
+    90: '우주의 경계', 91: '시간의 강', 92: '공간의 바다', 93: '차원의 폭포', 94: '역사의 늪', 95: '미래의 탑', 96: '과거의 동굴', 97: '현재의 다리', 98: '영원의 문', 99: '순간의 창', 100: '무한의 문'
+}
 money_take = 100
 money_magnification_1 = 4
 money_magnification_2 = 10 
@@ -420,19 +429,19 @@ def weapon_ganha():
                 if weapon_gan == 1:
                     weapon_gan += int(weapon_gan_take)
                 if weapon < 10:
-                    weapon_gan += weapon_gan_take
+                    weapon_gan += int(weapon_gan_take)
                     weapon_gan_take *= 1.2
                     weapon_ganha_take *= 1.1
                 elif weapon < 20:
-                    weapon_gan += weapon_gan_take
+                    weapon_gan += int(weapon_gan_take)
                     weapon_gan_take *= 1.5
                     weapon_ganha_take *= 1.5
                 elif weapon < 30:
-                    weapon_gan += weapon_gan_take
+                    weapon_gan += int(weapon_gan_take)
                     weapon_gan_take *= 1.7
                     weapon_ganha_take *= 1.8
                 elif weapon < 40:
-                    weapon_gan += weapon_gan_take
+                    weapon_gan += int(weapon_gan_take)
                     weapon_gan_take *= 2
                     weapon_ganha_take *= 2
                 weapon_random_back -= int(weapon_random_back) * 0.21
@@ -510,7 +519,7 @@ def menu():
     soldier_display = soldier_display_f()
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}\n")
-    print(f"돈 : {money_display}\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {int(weapon_gan)})\n")
+    print(f"돈 : {money_display}\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})\n")
     print("1: 돈벌기  2: 부대모집  3: 무기강화  4: 전쟁시작  5: 게임종료")
     main_input = input()
     if main_input == "/도움말": tutorial()
