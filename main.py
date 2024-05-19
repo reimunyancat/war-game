@@ -181,11 +181,12 @@ def make_money2ex():
         make_money3()
 
 def make_money2():
-    global money
+    global money, money_display
     printline()
     print(f"홀짝 게임을 시작합니다!\n성공하신다면 베팅금액을 {money_magnification_1}배로 획득하실수 있습니다.\n실패하시면 베팅금액을 잃습니다.")
     
     while(True):
+        money_display = money_display_f()
         print(f"현재 돈 : {money_display}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
@@ -216,7 +217,7 @@ def make_money2():
             print("아쉽지만 실패했습니다. 다음 기회에 도전해보세요.")
 
 def make_money3():
-    global money
+    global money, money_display
     
     def initialize_deck():
         suits = ['스페이드', '다이아몬드', '하트', '클로버']
@@ -255,6 +256,7 @@ def make_money3():
     print(f"블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 {money_magnification_2}배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다\n포기하시면 베팅금액의 절반을 얻습니다.")
     while True:
         forgive = 0
+        money_display = money_display_f()
         print(f"현재 돈 : {money_display}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
