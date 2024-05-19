@@ -113,6 +113,8 @@ enemy_countries = {
     69: EnemyCountry('블랙홀', 50000000000, 50000000000, 10000000, 50000000000),
     70: EnemyCountry('빅뱅', 10000000000000, 5000000000000, None, None),
 }
+soldier_display = ""
+money_display = ""
 
 def back(betting):
     if betting <= 0:
@@ -132,24 +134,24 @@ def tutorial():
     print("나라를 5개 점령하면 도박수익이 증가합니다\n")
 
 def soldier_display_f():
-    global soldier, soldier_display
-    soldier_display = str(soldier)
+    soldier_display_str = str(soldier)
     if soldier >= 1000000000:
-        soldier_display = soldier_display[:-9] + ',' + soldier_display[-9:-6] + ',' + soldier_display[-6:-3] + ',' + soldier_display[-3:]
-    if soldier >= 1000000:
-        soldier_display = soldier_display[:-6] + ',' + soldier_display[-6:-3] + ',' + soldier_display[-3:]
+        soldier_display_str = soldier_display_str[:-9] + ',' + soldier_display_str[-9:-6] + ',' + soldier_display_str[-6:-3] + ',' + soldier_display_str[-3:]
+    elif soldier >= 1000000:
+        soldier_display_str = soldier_display_str[:-6] + ',' + soldier_display_str[-6:-3] + ',' + soldier_display_str[-3:]
     elif soldier >= 1000:
-        soldier_display = soldier_display[:-3] + ',' + soldier_display[-3:]
+        soldier_display_str = soldier_display_str[:-3] + ',' + soldier_display_str[-3:]
+    return soldier_display_str
 
 def money_display_f():
-    global money, money_display
-    money_display = str(money)
+    display_str = str(money)
     if money >= 1000000000:
-        money_display = money_display[:-9] + ',' + money_display[-9:-6] + ',' + money_display[-6:-3] + ',' + money_display[-3:]
+        display_str = display_str[:-9] + ',' + display_str[-9:-6] + ',' + display_str[-6:-3] + ',' + display_str[-3:]
     elif money >= 1000000:
-        money_display = money_display[:-6] + ',' + money_display[-6:-3] + ',' + money_display[-3:]
+        display_str = display_str[:-6] + ',' + display_str[-6:-3] + ',' + display_str[-3:]
     elif money >= 1000:
-        money_display = money_display[:-3] + ',' + money_display[-3:]
+        display_str = display_str[:-3] + ',' + display_str[-3:]
+    return display_str
 
 def make_money():
     printline()
@@ -159,7 +161,7 @@ def make_money():
     elif main_input == '2':make_money2ex()
 
 def make_money1():
-    global money, money_take
+    global money
     print("1초에",money_take,"원씩 벌어요")
     money_input = int(input("돈을 벌 시간을 입력하세요(초) : "))
     while True:
@@ -390,7 +392,7 @@ def make_soldier():
         else:
             soldier += soldier_i*15000000000000
             money -= soldier_i*1000000000000000
-            soldier_display_f()
+            soldier_display_f()      
             print("현재 군인수는", soldier_display,"명입니다")
 
 def weapon_ganha():
@@ -514,8 +516,8 @@ def menu():
     elif main_input == '4': war()
     elif main_input == '5': exit()
 
-def ending(enemycountry):
-    if enemycountry == 70:
+def ending(enemy_country_index):
+    if enemy_country_index == 70:
         print("축하드립니다")
         exit()
 
