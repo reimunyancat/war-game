@@ -6,7 +6,8 @@ from random import randint
 # import datetime
 # import sys
 # import PIL.Image
-import json
+from Scripts.countries_data import enemy_countries
+from Scripts.weapons import weapon_name
 
 # FPS = 30
 # FramePerSec = pygame.time.Clock()
@@ -29,25 +30,8 @@ weapon_random_front = '100%'
 weapon_random = randint(1, 100)
 weapon_random_back = 100
 enemycountry = 0
-
-class EnemyCountry:
-    def __init__(self, name, defence, attack, soldier_reward, money_reward):
-        self.name = name
-        self.defence = defence
-        self.attack = attack
-        self.soldier_reward = soldier_reward
-        self.money_reward = money_reward
-
 soldier_display = ""
 money_display = ""
-
-def load_data_from_json(filename):
-    """JSON 파일에서 데이터를 로드합니다."""
-    with open(filename, 'r', encoding='utf-8') as file:
-        return json.load(file)
-
-weapon_name = load_data_from_json('Scripts/weapons.json')
-enemy_coutries = load_data_from_json('Scripts/enemy_countries.json')
 
 def back(betting):
     if betting <= 0:
