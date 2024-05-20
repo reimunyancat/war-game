@@ -446,7 +446,7 @@ def war():
             break
 
     
-printline()
+printline(.lstrip())
 
 print("전쟁 게임에 오신 것을 환영합니다")
 print("제작자는 평화주의자입니다")
