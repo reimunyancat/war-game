@@ -15,7 +15,7 @@ from random import randint
 
 # SCREEN_HEIGHT = 1000
 
-money = 1000
+money = 1000000000
 soldier = 0
 weapon = 0
 weapon_gan = 1
@@ -432,29 +432,30 @@ def weapon_ganha():
                     weapon_gan += int(weapon_gan_take)
                 if weapon < 10:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 1.2
-                    weapon_ganha_take *= 1.1
+                    weapon_gan_take *= 1.3
+                    weapon_ganha_take *= 1.2
                 elif weapon < 20:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 1.5
-                    weapon_ganha_take *= 1.5
+                    weapon_gan_take *= 1.7
+                    weapon_ganha_take *= 1.8
                 elif weapon < 30:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 2
-                    weapon_ganha_take *= 2.2
+                    weapon_gan_take *= 2.3
+                    weapon_ganha_take *= 2.5
                 elif weapon < 40:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 2.7
-                    weapon_ganha_take *= 3
+                    weapon_gan_take *= 2.9
+                    weapon_ganha_take *= 3.2
                 elif weapon < 50:
                     weapon_gan += int(weapon_gan_take)
                     weapon_gan_take *= 3.5
-                    weapon_ganha_take *= 3.9
-                weapon_random_back -= int(weapon_random_back) * 0.25
-                weapon_random_front = str(weapon_random_back) + "%"
+                    weapon_ganha_take *= 4
+                tmp = int(weapon_random_back) * 0.05
+                weapon_random_back -= int(tmp)
+                weapon_random_front = str(tmp) + "%"
                 print("\n강화 성공!")
                 printline()
-            else:
+            else:S
                 money -= int(weapon_ganha_take)
                 print("\n강화 실패 ㅋㅋㅋㅋ")
                 printline()
