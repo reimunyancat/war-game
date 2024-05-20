@@ -1,0 +1,499 @@
+{
+    "0": {
+        "name": "몽골",
+        "defence": 10,
+        "attack": 5,
+        "soldier_reward": 2,
+        "money_reward": 1000
+    },
+    "1": {
+        "name": "중국",
+        "defence": 30,
+        "attack": 10,
+        "soldier_reward": 5,
+        "money_reward": 3000
+    },
+    "2": {
+        "name": "태국",
+        "defence": 50,
+        "attack": 20,
+        "soldier_reward": 10,
+        "money_reward": 5000
+    },
+    "3": {
+        "name": "캄보디아",
+        "defence": 100,
+        "attack": 25,
+        "soldier_reward": 30,
+        "money_reward": 7000
+    },
+    "4": {
+        "name": "필리핀",
+        "defence": 200,
+        "attack": 40,
+        "soldier_reward": 50,
+        "money_reward": 10000
+    },
+    "5": {
+        "name": "일본",
+        "defence": 500,
+        "attack": 100,
+        "soldier_reward": 100,
+        "money_reward": 15000
+    },
+    "6": {
+        "name": "호주",
+        "defence": 1000,
+        "attack": 150,
+        "soldier_reward": 200,
+        "money_reward": 30000
+    },
+    "7": {
+        "name": "싱가포르",
+        "defence": 3000,
+        "attack": 250,
+        "soldier_reward": 500,
+        "money_reward": 50000
+    },
+    "8": {
+        "name": "몰디브",
+        "defence": 5000,
+        "attack": 500,
+        "soldier_reward": 1000,
+        "money_reward": 75000
+    },
+    "9": {
+        "name": "인도",
+        "defence": 10000,
+        "attack": 700,
+        "soldier_reward": 2000,
+        "money_reward": 100000
+    },
+    "10": {
+        "name": "네팔",
+        "defence": 20000,
+        "attack": 1000,
+        "soldier_reward": 5000,
+        "money_reward": 200000
+    },
+    "11": {
+        "name": "두바이",
+        "defence": 40000,
+        "attack": 3000,
+        "soldier_reward": 8000,
+        "money_reward": 500000
+    },
+    "12": {
+        "name": "사우디아라비아",
+        "defence": 75000,
+        "attack": 5000,
+        "soldier_reward": 10000,
+        "money_reward": 750000
+    },
+    "13": {
+        "name": "케냐",
+        "defence": 100000,
+        "attack": 8000,
+        "soldier_reward": 15000,
+        "money_reward": 1200000
+    },
+    "14": {
+        "name": "마다가스카르",
+        "defence": 150000,
+        "attack": 10000,
+        "soldier_reward": 20000,
+        "money_reward": 1500000
+    },
+    "15": {
+        "name": "남아프리카",
+        "defence": 300000,
+        "attack": 20000,
+        "soldier_reward": 60000,
+        "money_reward": 20000000
+    },
+    "16": {
+        "name": "가나",
+        "defence": 750000,
+        "attack": 30000,
+        "soldier_reward": 80000,
+        "money_reward": 50000000
+    },
+    "17": {
+        "name": "사하라사막",
+        "defence": 1000000,
+        "attack": 50000,
+        "soldier_reward": 130000,
+        "money_reward": 80000000
+    },
+    "18": {
+        "name": "이집트",
+        "defence": 1500000,
+        "attack": 75000,
+        "soldier_reward": 175000,
+        "money_reward": 110000000
+    },
+    "19": {
+        "name": "터키",
+        "defence": 4000000,
+        "attack": 100000,
+        "soldier_reward": 240000,
+        "money_reward": 150000000
+    },
+    "20": {
+        "name": "러시아",
+        "defence": 8000000,
+        "attack": 150000,
+        "soldier_reward": 270000,
+        "money_reward": 200000000
+    },
+    "21": {
+        "name": "그리스",
+        "defence": 13000000,
+        "attack": 200000,
+        "soldier_reward": 330000,
+        "money_reward": 230000000
+    },
+    "22": {
+        "name": "이탈리아",
+        "defence": 18000000,
+        "attack": 300000,
+        "soldier_reward": 370000,
+        "money_reward": 260000000
+    },
+    "23": {
+        "name": "모나코",
+        "defence": 25000000,
+        "attack": 500000,
+        "soldier_reward": 400000,
+        "money_reward": 300000000
+    },
+    "24": {
+        "name": "스페인",
+        "defence": 35000000,
+        "attack": 700000,
+        "soldier_reward": 500000,
+        "money_reward": 400000000
+    },
+    "25": {
+        "name": "프랑스",
+        "defence": 50000000,
+        "attack": 1000000,
+        "soldier_reward": 750000,
+        "money_reward": 800000000
+    },
+    "26": {
+        "name": "독일",
+        "defence": 75000000,
+        "attack": 1500000,
+        "soldier_reward": 1000000,
+        "money_reward": 1500000000
+    },
+    "27": {
+        "name": "덴마크",
+        "defence": 100000000,
+        "attack": 2000000,
+        "soldier_reward": 1500000,
+        "money_reward": 2000000000
+    },
+    "28": {
+        "name": "노르웨이",
+        "defence": 140000000,
+        "attack": 3000000,
+        "soldier_reward": 2000000,
+        "money_reward": 2500000000
+    },
+    "29": {
+        "name": "영국",
+        "defence": 190000000,
+        "attack": 4500000,
+        "soldier_reward": 2500000,
+        "money_reward": 3000000000
+    },
+    "30": {
+        "name": "그린란드",
+        "defence": 250000000,
+        "attack": 6000000,
+        "soldier_reward": 3000000,
+        "money_reward": 3500000000
+    },
+    "31": {
+        "name": "캐나다",
+        "defence": 330000000,
+        "attack": 10000000,
+        "soldier_reward": 4000000,
+        "money_reward": 4500000000
+    },
+    "32": {
+        "name": "뉴욕",
+        "defence": 440000000,
+        "attack": 17000000,
+        "soldier_reward": 5000000,
+        "money_reward": 5000000000
+    },
+    "33": {
+        "name": "버뮤다",
+        "defence": 600000000,
+        "attack": 25000000,
+        "soldier_reward": 6000000,
+        "money_reward": 5500000000
+    },
+    "34": {
+        "name": "자메이카",
+        "defence": 800000000,
+        "attack": 35000000,
+        "soldier_reward": 7000000,
+        "money_reward": 6000000000
+    },
+    "35": {
+        "name": "콜롬비아",
+        "defence": 1000000000,
+        "attack": 45000000,
+        "soldier_reward": 8000000,
+        "money_reward": 6500000000
+    },
+    "36": {
+        "name": "브라질",
+        "defence": 1300000000,
+        "attack": 60000000,
+        "soldier_reward": 9000000,
+        "money_reward": 7000000000
+    },
+    "37": {
+        "name": "아르헨티나",
+        "defence": 1600000000,
+        "attack": 80000000,
+        "soldier_reward": 10000000,
+        "money_reward": 7500000000
+    },
+    "38": {
+        "name": "마추픽추",
+        "defence": 2000000000,
+        "attack": 100000000,
+        "soldier_reward": 11000000,
+        "money_reward": 8000000000
+    },
+    "39": {
+        "name": "이스터 섬",
+        "defence": 2500000000,
+        "attack": 120000000,
+        "soldier_reward": 12000000,
+        "money_reward": 8500000000
+    },
+    "40": {
+        "name": "멕시코",
+        "defence": 3000000000,
+        "attack": 150000000,
+        "soldier_reward": 13000000,
+        "money_reward": 9000000000
+    },
+    "41": {
+        "name": "NASA",
+        "defence": 3600000000,
+        "attack": 180000000,
+        "soldier_reward": 14000000,
+        "money_reward": 9500000000
+    },
+    "42": {
+        "name": "라스베가스",
+        "defence": 4300000000,
+        "attack": 220000000,
+        "soldier_reward": 15000000,
+        "money_reward": 10000000000
+    },
+    "43": {
+        "name": "할리우드",
+        "defence": 5000000000,
+        "attack": 270000000,
+        "soldier_reward": 16000000,
+        "money_reward": 10500000000
+    },
+    "44": {
+        "name": "알래스카",
+        "defence": 5700000000,
+        "attack": 330000000,
+        "soldier_reward": 17000000,
+        "money_reward": 11000000000
+    },
+    "45": {
+        "name": "미국",
+        "defence": 6400000000,
+        "attack": 400000000,
+        "soldier_reward": 18000000,
+        "money_reward": 11500000000
+    },
+    "46": {
+        "name": "하와이",
+        "defence": 7100000000,
+        "attack": 500000000,
+        "soldier_reward": 19000000,
+        "money_reward": 12000000000
+    },
+    "47": {
+        "name": "북한",
+        "defence": 7800000000,
+        "attack": 600000000,
+        "soldier_reward": 20000000,
+        "money_reward": 12500000000
+    },
+    "48": {
+        "name": "한국",
+        "defence": 8500000000,
+        "attack": 700000000,
+        "soldier_reward": 21000000,
+        "money_reward": 13000000000
+    },
+    "49": {
+        "name": "달",
+        "defence": 9200000000,
+        "attack": 800000000,
+        "soldier_reward": 22000000,
+        "money_reward": 13500000000
+    },
+    "50": {
+        "name": "화성",
+        "defence": 9900000000,
+        "attack": 900000000,
+        "soldier_reward": 23000000,
+        "money_reward": 14000000000
+    },
+    "51": {
+        "name": "수성",
+        "defence": 10600000000,
+        "attack": 1000000000,
+        "soldier_reward": 24000000,
+        "money_reward": 14500000000
+    },
+    "52": {
+        "name": "금성",
+        "defence": 11300000000,
+        "attack": 1200000000,
+        "soldier_reward": 25000000,
+        "money_reward": 15000000000
+    },
+    "53": {
+        "name": "목성",
+        "defence": 12000000000,
+        "attack": 1500000000,
+        "soldier_reward": 26000000,
+        "money_reward": 15500000000
+    },
+    "54": {
+        "name": "토성",
+        "defence": 12700000000,
+        "attack": 1800000000,
+        "soldier_reward": 27000000,
+        "money_reward": 16000000000
+    },
+    "55": {
+        "name": "천왕성",
+        "defence": 13400000000,
+        "attack": 2200000000,
+        "soldier_reward": 28000000,
+        "money_reward": 16500000000
+    },
+    "56": {
+        "name": "해왕성",
+        "defence": 14100000000,
+        "attack": 2700000000,
+        "soldier_reward": 29000000,
+        "money_reward": 17000000000
+    },
+    "57": {
+        "name": "태양",
+        "defence": 14800000000,
+        "attack": 3300000000,
+        "soldier_reward": 30000000,
+        "money_reward": 17500000000
+    },
+    "58": {
+        "name": "명왕성",
+        "defence": 15500000000,
+        "attack": 4000000000,
+        "soldier_reward": 31000000,
+        "money_reward": 18000000000
+    },
+    "59": {
+        "name": "견우성",
+        "defence": 16200000000,
+        "attack": 5000000000,
+        "soldier_reward": 32000000,
+        "money_reward": 18500000000
+    },
+    "60": {
+        "name": "천랑성",
+        "defence": 16900000000,
+        "attack": 6000000000,
+        "soldier_reward": 33000000,
+        "money_reward": 19000000000
+    },
+    "61": {
+        "name": "직녀성",
+        "defence": 17600000000,
+        "attack": 7000000000,
+        "soldier_reward": 34000000,
+        "money_reward": 19500000000
+    },
+    "62": {
+        "name": "알데바란",
+        "defence": 18300000000,
+        "attack": 8000000000,
+        "soldier_reward": 35000000,
+        "money_reward": 20000000000
+    },
+    "63": {
+        "name": "베텔게우스",
+        "defence": 19000000000,
+        "attack": 9000000000,
+        "soldier_reward": 36000000,
+        "money_reward": 20500000000
+    },
+    "64": {
+        "name": "디네프",
+        "defence": 19700000000,
+        "attack": 10000000000,
+        "soldier_reward": 37000000,
+        "money_reward": 21000000000
+    },
+    "65": {
+        "name": "리겔",
+        "defence": 20400000000,
+        "attack": 12000000000,
+        "soldier_reward": 38000000,
+        "money_reward": 21500000000
+    },
+    "66": {
+        "name": "시리우스",
+        "defence": 21100000000,
+        "attack": 15000000000,
+        "soldier_reward": 39000000,
+        "money_reward": 22000000000
+    },
+    "67": {
+        "name": "안드로메다",
+        "defence": 21800000000,
+        "attack": 18000000000,
+        "soldier_reward": 40000000,
+        "money_reward": 22500000000
+    },
+    "68": {
+        "name": "중성자별",
+        "defence": 22500000000,
+        "attack": 22000000000,
+        "soldier_reward": 41000000,
+        "money_reward": 23000000000
+    },
+    "69": {
+        "name": "블랙홀",
+        "defence": 50000000000,
+        "attack": 50000000000,
+        "soldier_reward": 10000000,
+        "money_reward": 50000000000
+    },
+    "70": {
+        "name": "빅뱅",
+        "defence": 10000000000000,
+        "attack": 5000000000000,
+        "soldier_reward": null,
+        "money_reward": null
+    }
+}

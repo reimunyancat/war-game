@@ -1,88 +1,102 @@
-import tkinter as tk
-from tkinter import messagebox, simpledialog
-import random
-import time
+import json
 
-class WarGameApp:
-    def __init__(self, master):
-        self.master = master
-        master.title("전쟁 게임")
+class EnemyCountry:
+    def __init__(self, name, defence, attack, soldier_reward, money_reward):
+        self.name = name
+        self.defence = defence
+        self.attack = attack
+        self.soldier_reward = soldier_reward
+        self.money_reward = money_reward
 
-        self.money = 1000
-        self.soldier = 0
-        self.weapon = 0
-        self.weapon_gan = 1
-        self.weapon_gan_take = 10
-        self.weapon_name = {0: '모래', 1: '돌', 2: '나무검', 3: '돌검', 4: '낫', 5: '망치', 6: '도끼', 7: '칼', 8: '노트북', 9: '톱', 10: '수류탄'}
+    def to_dict(self):
+        """인스턴스를 딕셔너리로 변환합니다."""
+        return {
+            'name': self.name,
+            'defence': self.defence,
+            'attack': self.attack,
+            'soldier_reward': self.soldier_reward,
+            'money_reward': self.money_reward
+        }
 
-        self.status_frame = tk.Frame(master)
-        self.status_frame.pack()
+def save_data_to_json(data, filename):
+    """주어진 데이터를 JSON 파일로 저장합니다."""
+    with open(filename, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4, default=lambda o: o.to_dict())
 
-        self.money_label = tk.Label(self.status_frame, text=f"돈: {self.money}원")
-        self.money_label.pack()
+# EnemyCountry 인스턴스를 포함하는 딕셔너리
+enemy_countries = {
+    0: EnemyCountry('몽골', 10, 5, 2, 1000),
+    1: EnemyCountry('중국', 30, 10, 5, 3000),
+    2: EnemyCountry('태국', 50, 20, 10, 5000),
+    3: EnemyCountry('캄보디아', 100, 25, 30, 7000),
+    4: EnemyCountry('필리핀', 200, 40, 50, 10000),
+    5: EnemyCountry('일본', 500, 100, 100, 15000),
+    6: EnemyCountry('호주', 1000, 150, 200, 30000),
+    7: EnemyCountry('싱가포르', 3000, 250, 500, 50000),
+    8: EnemyCountry('몰디브', 5000, 500, 1000, 75000),
+    9: EnemyCountry('인도', 10000, 700, 2000, 100000),
+    10: EnemyCountry('네팔', 20000, 1000, 5000, 200000),
+    11: EnemyCountry('두바이', 40000, 3000, 8000, 500000),
+    12: EnemyCountry('사우디아라비아', 75000, 5000, 10000, 750000),
+    13: EnemyCountry('케냐', 100000, 8000, 15000, 1200000),
+    14: EnemyCountry('마다가스카르', 150000, 10000, 20000, 1500000),
+    15: EnemyCountry('남아프리카', 300000, 20000, 60000, 20000000),
+    16: EnemyCountry('가나', 750000, 30000, 80000, 50000000),
+    17: EnemyCountry('사하라사막', 1000000, 50000, 130000, 80000000),
+    18: EnemyCountry('이집트', 1500000, 75000, 175000, 110000000),
+    19: EnemyCountry('터키', 4000000, 100000, 240000, 150000000),
+    20: EnemyCountry('러시아', 8000000, 150000, 270000, 200000000),
+    21: EnemyCountry('그리스', 13000000, 200000, 330000, 230000000),
+    22: EnemyCountry('이탈리아', 18000000, 300000, 370000, 260000000),
+    23: EnemyCountry('모나코', 25000000, 500000, 400000, 300000000),
+    24: EnemyCountry('스페인', 35000000, 700000, 500000, 400000000),
+    25: EnemyCountry('프랑스', 50000000, 1000000, 750000, 800000000),
+    26: EnemyCountry('독일', 75000000, 1500000, 1000000, 1500000000),
+    27: EnemyCountry('덴마크', 100000000, 2000000, 1500000, 2000000000),
+    28: EnemyCountry('노르웨이', 140000000, 3000000, 2000000, 2500000000),
+    29: EnemyCountry('영국', 190000000, 4500000, 2500000, 3000000000),
+    30: EnemyCountry('그린란드', 250000000, 6000000, 3000000, 3500000000),
+    31: EnemyCountry('캐나다', 330000000, 10000000, 4000000, 4500000000),
+    32: EnemyCountry('뉴욕', 440000000, 17000000, 5000000, 5000000000),
+    33: EnemyCountry('버뮤다', 600000000, 25000000, 6000000, 5500000000),
+    34: EnemyCountry('자메이카', 800000000, 35000000, 7000000, 6000000000),
+    35: EnemyCountry('콜롬비아', 1000000000, 45000000, 8000000, 6500000000),
+    36: EnemyCountry('브라질', 1300000000, 60000000, 9000000, 7000000000),
+    37: EnemyCountry('아르헨티나', 1600000000, 80000000, 10000000, 7500000000),
+    38: EnemyCountry('마추픽추', 2000000000, 100000000, 11000000, 8000000000),
+    39: EnemyCountry('이스터 섬', 2500000000, 120000000, 12000000, 8500000000),
+    40: EnemyCountry('멕시코', 3000000000, 150000000, 13000000, 9000000000),
+    41: EnemyCountry('NASA', 3600000000, 180000000, 14000000, 9500000000),
+    42: EnemyCountry('라스베가스', 4300000000, 220000000, 15000000, 10000000000),
+    43: EnemyCountry('할리우드', 5000000000, 270000000, 16000000, 10500000000),
+    44: EnemyCountry('알래스카', 5700000000, 330000000, 17000000, 11000000000),
+    45: EnemyCountry('미국', 6400000000, 400000000, 18000000, 11500000000),
+    46: EnemyCountry('하와이', 7100000000, 500000000, 19000000, 12000000000),
+    47: EnemyCountry('북한', 7800000000, 600000000, 20000000, 12500000000),
+    48: EnemyCountry('한국', 8500000000, 700000000, 21000000, 13000000000),
+    49: EnemyCountry('달', 9200000000, 800000000, 22000000, 13500000000),
+    50: EnemyCountry('화성', 9900000000, 900000000, 23000000, 14000000000),
+    51: EnemyCountry('수성', 10600000000, 1000000000, 24000000, 14500000000),
+    52: EnemyCountry('금성', 11300000000, 1200000000, 25000000, 15000000000),
+    53: EnemyCountry('목성', 12000000000, 1500000000, 26000000, 15500000000),
+    54: EnemyCountry('토성', 12700000000, 1800000000, 27000000, 16000000000),
+    55: EnemyCountry('천왕성', 13400000000, 2200000000, 28000000, 16500000000),
+    56: EnemyCountry('해왕성', 14100000000, 2700000000, 29000000, 17000000000),
+    57: EnemyCountry('태양', 14800000000, 3300000000, 30000000, 17500000000),
+    58: EnemyCountry('명왕성', 15500000000, 4000000000, 31000000, 18000000000),
+    59: EnemyCountry('견우성', 16200000000, 5000000000, 32000000, 18500000000),
+    60: EnemyCountry('천랑성', 16900000000, 6000000000, 33000000, 19000000000),
+    61: EnemyCountry('직녀성', 17600000000, 7000000000, 34000000, 19500000000),
+    62: EnemyCountry('알데바란', 18300000000, 8000000000, 35000000, 20000000000),
+    63: EnemyCountry('베텔게우스', 19000000000, 9000000000, 36000000, 20500000000),
+    64: EnemyCountry('디네프', 19700000000, 10000000000, 37000000, 21000000000),
+    65: EnemyCountry('리겔', 20400000000, 12000000000, 38000000, 21500000000),
+    66: EnemyCountry('시리우스', 21100000000, 15000000000, 39000000, 22000000000),
+    67: EnemyCountry('안드로메다', 21800000000, 18000000000, 40000000, 22500000000),
+    68: EnemyCountry('중성자별', 22500000000, 22000000000, 41000000, 23000000000),
+    69: EnemyCountry('블랙홀', 50000000000, 50000000000, 10000000, 50000000000),
+    70: EnemyCountry('빅뱅', 10000000000000, 5000000000000, None, None),
+}
 
-        self.soldier_label = tk.Label(self.status_frame, text=f"군인 수: {self.soldier}명")
-        self.soldier_label.pack()
-
-        self.weapon_label = tk.Label(self.status_frame, text=f"무기: {self.weapon_name[self.weapon]} (공격력: {self.weapon_gan})")
-        self.weapon_label.pack()
-
-        self.action_frame = tk.Frame(master)
-        self.action_frame.pack()
-
-        self.recruit_button = tk.Button(self.action_frame, text="군인 모집", command=self.recruit_soldier)
-        self.recruit_button.pack(side=tk.LEFT)
-
-        self.upgrade_weapon_button = tk.Button(self.action_frame, text="무기 강화", command=self.upgrade_weapon)
-        self.upgrade_weapon_button.pack(side=tk.LEFT)
-
-        self.make_money_button = tk.Button(self.action_frame, text="돈 벌기", command=self.make_money)
-        self.make_money_button.pack(side=tk.LEFT)
-
-        self.start_war_button = tk.Button(self.action_frame, text="전쟁 시작", command=self.start_war)
-        self.start_war_button.pack(side=tk.LEFT)
-
-    def recruit_soldier(self):
-        soldier_cost = 1000
-        if self.money >= soldier_cost:
-            self.soldier += 1
-            self.money -= soldier_cost
-            self.update_status()
-        else:
-            messagebox.showinfo("알림", "돈이 부족합니다!")
-
-    def upgrade_weapon(self):
-        upgrade_cost = 100
-        if self.money >= upgrade_cost:
-            self.weapon += 1
-            self.money -= upgrade_cost
-            self.update_status()
-        else:
-            messagebox.showinfo("알림", "돈이 부족합니다!")
-
-    def make_money(self):
-        money_earned = simpledialog.askinteger("돈 벌기", "몇 시간 돈을 벌겠습니까?", minvalue=1, maxvalue=24)
-        if money_earned:
-            self.money += money_earned * 100  # 예를 들어 시간당 100원 번다고 가정
-            self.update_status()
-
-    def start_war(self):
-        enemy_strength = random.randint(1, 10)
-        if self.soldier > enemy_strength:
-            messagebox.showinfo("전쟁 결과", "승리했습니다!")
-            self.money += 500  # 전쟁 승리 보상
-            self.soldier -= enemy_strength  # 전쟁 중 손실된 군인 수
-        else:
-            messagebox.showinfo("전쟁 결과", "패배했습니다!")
-            self.soldier = 0  # 모든 군인이 전쟁에서 패배
-        self.update_status()
-
-    def update_status(self):
-        self.money_label.config(text=f"돈: {self.money}원")
-        self.soldier_label.config(text=f"군인 수: {self.soldier}명")
-        self.weapon_label.config(text=f"무기: {self.weapon_name[self.weapon]} (공격력: {self.weapon_gan})")
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = WarGameApp(root)
-    root.mainloop()
+# 데이터를 JSON 파일로 저장
+save_data_to_json(enemy_countries, 'scripts/enemy_countries.json')
