@@ -145,7 +145,7 @@ def tutorial():
 
 def soldier_display_f():
     display_str = f"{soldier:,}"
-    return soldier_display_str
+    return display_str
 
 def money_display_f():
     display_str = f"{money:,}"
