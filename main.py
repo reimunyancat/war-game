@@ -15,7 +15,7 @@ from random import randint
 
 # SCREEN_HEIGHT = 1000
 
-money = 1000000000
+money = 1000
 soldier = 0
 weapon = 0
 weapon_gan = 1
@@ -145,23 +145,11 @@ def tutorial():
     print("나라를 5개 점령하면 도박수익이 증가합니다\n")
 
 def soldier_display_f():
-    soldier_display_str = str(soldier)
-    if soldier >= 1000000000:
-        soldier_display_str = soldier_display_str[:-9] + ',' + soldier_display_str[-9:-6] + ',' + soldier_display_str[-6:-3] + ',' + soldier_display_str[-3:]
-    elif soldier >= 1000000:
-        soldier_display_str = soldier_display_str[:-6] + ',' + soldier_display_str[-6:-3] + ',' + soldier_display_str[-3:]
-    elif soldier >= 1000:
-        soldier_display_str = soldier_display_str[:-3] + ',' + soldier_display_str[-3:]
+    display_str = f"{soldier:,}"
     return soldier_display_str
 
 def money_display_f():
-    display_str = str(money)
-    if money >= 1000000000:
-        display_str = display_str[:-9] + ',' + display_str[-9:-6] + ',' + display_str[-6:-3] + ',' + display_str[-3:]
-    elif money >= 1000000:
-        display_str = display_str[:-6] + ',' + display_str[-6:-3] + ',' + display_str[-3:]
-    elif money >= 1000:
-        display_str = display_str[:-3] + ',' + display_str[-3:]
+    display_str = f"{money:,}"
     return display_str
 
 def make_money():
@@ -474,7 +462,7 @@ def weapon_ganha():
                     weapon_gan_take *= 10000000000
                     weapon_ganha_take *= 100000000
                     weapon_gan += int(weapon_gan_take)
-                tmp = int(weapon_random_back) - int(weapon_random_back) * 0.952
+                tmp = int(weapon_random_back) - int(weapon_random_back) * 0.94
                 weapon_random_back -= int(tmp)
                 weapon_random_front = str(weapon_random_back) + "%"
                 print("\n강화 성공!")
@@ -504,7 +492,7 @@ def war():
                 printline()
                 if enemy_countries[enemycountry].defence < 0:
                     enemy_countries[enemycountry].defence = 0
-                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan}" + "=" * 15 + f"{enemy_countries[enemycountry].name} 군인 수 : {enemy_countries[enemycountry].defence}  공격력 : {enemy_countries[enemycountry].attack}")
+                print(f"{country_name} 군인 수 : {soldier}명  공격력 : {weapon_gan} " + "=" * 15 + f" {enemy_countries[enemycountry].name} 군인 수 : {enemy_countries[enemycountry].defence}  공격력 : {enemy_countries[enemycountry].attack}")
 
                 if enemy_countries[enemycountry].defence < 0:
                     enemy_countries[enemycountry].defence = 0
@@ -528,6 +516,8 @@ def war():
                     printline()
                     print(f"{enemy_countries[enemycountry].name}의 공격에 의해 패배하였습니다.")
                     break
+                soldier -= enemy_countries[enemycountry].attack
+                enemy_countries[enemycountry].defence -= weapon_gan
                 time.sleep(1)
         else: 
             print("에휴")
