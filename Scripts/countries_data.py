@@ -1,4 +1,4 @@
-from enemy_country import EnemyCountry
+from .enemy_country import EnemyCountry
 
 enemy_countries = {
     0: EnemyCountry('몽골', 10, 5, 2, 1000),
