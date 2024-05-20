@@ -68,7 +68,7 @@ def tutorial():
 
 def soldier_display_f():
     display_str = f"{soldier:,}"
-    return soldier_display_str
+    return display_str
 
 def money_display_f():
     display_str = f"{money:,}"
@@ -446,7 +446,7 @@ def war():
             break
 
     
-printline(.lstrip())
+printline()
 
 print("전쟁 게임에 오신 것을 환영합니다")
 print("제작자는 평화주의자입니다")
