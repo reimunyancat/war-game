@@ -428,8 +428,8 @@ def weapon_ganha():
             money -= int(weapon_ganha_take)
             if weapon_random <= weapon_random_back:
                 weapon += 1
-                if weapon_gan == 1:
-                    weapon_gan += int(weapon_gan_take)
+                if weapon == 1:
+                    weapon_gan = 5
                 if weapon < 10:
                     weapon_gan += int(weapon_gan_take)
                     weapon_gan_take *= 1.3
@@ -450,6 +450,30 @@ def weapon_ganha():
                     weapon_gan += int(weapon_gan_take)
                     weapon_gan_take *= 3.5
                     weapon_ganha_take *= 4
+                elif weapon < 60:
+                    weapon_gan += int(weapon_gan_take)
+                    weapon_gan_take *= 4.2
+                    weapon_ganha_take *= 5
+                elif weapon < 70:
+                    weapon_gan += int(weapon_gan_take)
+                    weapon_gan_take *= 5
+                    weapon_ganha_take *= 6
+                elif weapon < 80:
+                    weapon_gan += int(weapon_gan_take)
+                    weapon_gan_take *= 6
+                    weapon_ganha_take *= 7.5
+                elif weapon < 90:
+                    weapon_gan += int(weapon_gan_take)
+                    weapon_gan_take *= 7.5
+                    weapon_ganha_take *= 9
+                elif weapon < 100:
+                    weapon_gan += int(weapon_gan_take)
+                    weapon_gan_take *= 9
+                    weapon_ganha_take *= 10.5
+                elif weapon == 100:
+                    weapon_gan_take *= 10000000000
+                    weapon_ganha_take *= 100000000
+                    weapon_gan += int(weapon_gan_take)
                 tmp = int(weapon_random_back) - int(weapon_random_back) * 0.952
                 weapon_random_back -= int(tmp)
                 weapon_random_front = str(weapon_random_back) + "%"
