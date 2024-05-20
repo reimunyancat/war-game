@@ -450,12 +450,12 @@ def weapon_ganha():
                     weapon_gan += int(weapon_gan_take)
                     weapon_gan_take *= 3.5
                     weapon_ganha_take *= 4
-                tmp = int(weapon_random_back) * 0.05
+                tmp = int(weapon_random_back) - int(weapon_random_back) * 0.952
                 weapon_random_back -= int(tmp)
-                weapon_random_front = str(tmp) + "%"
+                weapon_random_front = str(weapon_random_back) + "%"
                 print("\n강화 성공!")
                 printline()
-            else:S
+            else:
                 money -= int(weapon_ganha_take)
                 print("\n강화 실패 ㅋㅋㅋㅋ")
                 printline()
