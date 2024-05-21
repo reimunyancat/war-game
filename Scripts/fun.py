@@ -1,5 +1,3 @@
-from .data import soldier, money
-
 def back(betting):
     if betting <= 0:
         print("\aYou are an idiot")
@@ -17,10 +15,11 @@ def tutorial():
     print("나라를 점령하면 군인과 돈을 얻고 점령할수록 돈벌기 수익이 증가합니다")
     print("나라를 5개 점령하면 도박수익이 증가합니다\n")
 
-def soldier_display_f():
+def soldier_display_f(soldier):
     display_str = f"{soldier:,}"
     return display_str
 
-def money_display_f():
+def money_display_f(money):
     display_str = f"{money:,}"
     return display_str
+

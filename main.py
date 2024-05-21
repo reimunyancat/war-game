@@ -416,8 +416,8 @@ main_name = input("유저 이름을 입력하세요 : ")
 print("\n'/도움말'을 입력하세요")
 
 def menu():
-    money_display = money_display_f()
-    soldier_display = soldier_display_f()
+    money_display = money_display_f(money)
+    soldier_display = soldier_display_f(soldier)
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}\n")
     print(f"돈 : {money_display}원\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})\n")
