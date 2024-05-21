@@ -8,6 +8,8 @@ from random import randint
 # import PIL.Image
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
+from Scripts.fun import back, printline, tutorial, soldier_display_f, money_display_f
+from Scripts.data import money, soldier
 
 # FPS = 30
 # FramePerSec = pygame.time.Clock()
@@ -17,8 +19,6 @@ from Scripts.weapons import weapon_name
 
 # SCREEN_HEIGHT = 1000
 
-money = 1000
-soldier = 0
 weapon = 0
 weapon_gan = 1
 weapon_gan_take = 10
@@ -33,30 +33,6 @@ enemycountry = 0
 soldier_display = ""
 money_display = ""
 
-def back(betting):
-    if betting <= 0:
-        print("\aYou are an idiot")
-        return False
-    return True
-
-def printline():
-    print("\n\n==============================\n")
-
-def tutorial():
-    printline()
-    print("부대모집은 군인을 사는거고 무기강화는 무기를 강화시키는겁니다")
-    print("전투력은 군인수 = HP, 무기 = 공격력입니다")
-    print("메인화면에서 잔액과 부대수와 무기강화현황을 볼 수 있습니다")
-    print("나라를 점령하면 군인과 돈을 얻고 점령할수록 돈벌기 수익이 증가합니다")
-    print("나라를 5개 점령하면 도박수익이 증가합니다\n")
-
-def soldier_display_f():
-    display_str = f"{soldier:,}"
-    return display_str
-
-def money_display_f():
-    display_str = f"{money:,}"
-    return display_str
 
 def make_money():
     printline()
@@ -245,7 +221,7 @@ def make_soldier():
     printline()
     money_display = money_display_f()
     print(f"현재 돈 : {money_display}\n")
-    print("1 : 군인(1,000원)  2 : 탱크(1,000,000원) 3 : 전투기(1,000,000,000원) 4 : 핵미사일(1,000,000,000,000,000원)")
+    print("1 : 군인(1,000원)  2 : 탱크(1,000,000원) 3 : 전투기(1,000,000,000원) 4 : 핵시설(1,000,000,000,000,000원)")
     military = int(input())
     if military == 1:
         print("군인 한명당 1,000원입니다\n군인을 몇 명 모집하시겠습니까")

@@ -12,15 +12,25 @@ class WarGameApp:
         self.money_take = 100
         self.money_magnification_1 = 4
         self.money_magnification_2 = 10
+        self.weapon = 0
+        self.weapon_gan = 10
+        self.weapon_ganha_take = 100
+        self.weapon_random_back = 95
 
         self.create_widgets()
 
     def create_widgets(self):
         self.info_label = tk.Label(self.root, text=f"현재 돈: {self.money}원")
-        self.info_label.pack(pady=20)
+        self.info_label.grid(row=0, column=0, columnspan=2, pady=20, padx=10)
 
         self.money_button = tk.Button(self.root, text="돈 벌기", command=self.make_money)
-        self.money_button.pack()
+        self.money_button.grid(row=1, column=0, padx=10)
+
+        self.soldier_button = tk.Button(self.root, text="군인 및 장비 모집", command=self.make_soldier)
+        self.soldier_button.grid(row=1, column=1, padx=10)
+
+        self.upgrade_weapon_button = tk.Button(self.root, text="무기 강화", command=self.weapon_ganha)
+        self.upgrade_weapon_button.grid(row=1, column=2, padx=10)
 
     def update_info_label(self):
         self.info_label.config(text=f"현재 돈: {self.money}원")
@@ -125,6 +135,65 @@ class WarGameApp:
             value -= 10
             num_aces -= 1
         return value
+    
+    def make_soldier(self):
+        def purchase_units(unit_type, cost, unit_count):
+            try:
+                num_units = int(entry.get())
+                total_cost = num_units * cost
+                if self.money >= total_cost:
+                    if unit_type == "soldier":
+                        self.soldier += num_units
+                    elif unit_type == "tank":
+                        self.soldier += num_units * 1200
+                    elif unit_type == "fighter":
+                        self.soldier += num_units * 1500000
+                    elif unit_type == "nuclear":
+                        self.soldier += num_units * 15000000000000
+
+                    self.money -= total_cost
+                    self.update_info_label()
+                    result_label.config(text=f"{num_units}개의 {unit_type}를 구매했습니다.")
+                else:
+                    result_label.config(text="돈이 부족합니다.")
+            except ValueError:
+                result_label.config(text="올바른 숫자를 입력하세요.")
+
+        soldier_window = Toplevel(self.root)
+        soldier_window.title("군인 및 장비 모집")
+
+        Label(soldier_window, text="모집할 유닛의 종류를 선택하세요:").pack()
+        unit_type_var = StringVar(soldier_window)
+        unit_type_var.set("soldier")  # default value
+        unit_options = {"soldier": 1000, "tank": 1000000, "fighter": 1000000000, "nuclear": 1000000000000000}
+        unit_type_menu = OptionMenu(soldier_window, unit_type_var, *unit_options.keys())
+        unit_type_menu.pack()
+
+        Label(soldier_window, text="모집할 유닛 수:").pack()
+        entry = Entry(soldier_window)
+        entry.pack()
+
+        Button(soldier_window, text="모집하기", command=lambda: purchase_units(unit_type_var.get(), unit_options[unit_type_var.get()], 1)).pack()
+        result_label = Label(soldier_window, text="")
+        result_label.pack()
+
+    def weapon_ganha(self):
+        if self.money < self.weapon_ganha_take:
+            messagebox.showinfo("강화 실패", "돈이 부족합니다.")
+            return
+
+        self.money -= self.weapon_ganha_take
+        weapon_random = randint(1, 100)
+        if weapon_random <= self.weapon_random_back:
+            self.weapon += 1
+            self.weapon_gan += 5
+            self.weapon_ganha_take *= 1.2
+            self.weapon_random_back -= 5
+            messagebox.showinfo("강화 성공", f"무기가 강화되었습니다! 현재 레벨: {self.weapon}, 파워: {self.weapon_gan}")
+        else:
+            messagebox.showinfo("강화 실패", "무기 강화에 실패했습니다.")
+
+        self.info_label.config(text=self.get_info_text())
 
 if __name__ == "__main__":
     root = tk.Tk()
