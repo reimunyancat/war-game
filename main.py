@@ -1,15 +1,15 @@
 import time
 import random
-# import pygame
-# from pygame.locals import *
 from random import randint
-# import datetime
-# import sys
-# import PIL.Image
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
 from Scripts.fun import back, printline, tutorial, soldier_display_f, money_display_f
-from Scripts.data import money, soldier
+from Scripts.data import money, soldier, weapon, weapon_gan, weapon_gan_take, money_take, money_display, money_magnification_1, money_magnification_2, weapon_ganha_take, weapon_random_back, weapon_random_front, enemycountry, soldier_display
+# import pygame
+# from pygame.locals import *
+# import datetime
+# import sys
+# import PIL.Image
 
 # FPS = 30
 # FramePerSec = pygame.time.Clock()
@@ -18,21 +18,6 @@ from Scripts.data import money, soldier
 # SCREEN_WIDTH = 1000
 
 # SCREEN_HEIGHT = 1000
-
-weapon = 0
-weapon_gan = 1
-weapon_gan_take = 10
-money_take = 100
-money_magnification_1 = 4
-money_magnification_2 = 10 
-weapon_ganha_take = 100
-weapon_random_front = '100%'
-weapon_random = randint(1, 100)
-weapon_random_back = 100
-enemycountry = 0
-soldier_display = ""
-money_display = ""
-
 
 def make_money():
     printline()

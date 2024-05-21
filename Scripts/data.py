@@ -1,2 +1,14 @@
 money = 1000
 soldier = 0
+weapon = 0
+weapon_gan = 1
+weapon_gan_take = 10
+money_take = 100
+money_magnification_1 = 4
+money_magnification_2 = 10   
+weapon_ganha_take = 100
+weapon_random_front = '100%'
+weapon_random_back = 100
+enemycountry = 0
+soldier_display = ""
+money_display = ""
