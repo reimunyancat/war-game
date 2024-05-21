@@ -1,11 +1,11 @@
 import time
 import random
+import datetime
 from random import randint
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
 from Scripts.fun import back, printline, tutorial, soldier_display_f, money_display_f
-# from pygame.locals import *
-# import datetime
+# from pygame.locals import
 # import sys
 # import PIL.Image
 
@@ -292,7 +292,7 @@ def weapon_ganha():
                 print("You are an idiot")
                 return
 
-            weapon_random = randint(1, 100)
+            weapon_random = randint(0, 100)
             money -= int(weapon_ganha_take)
             if weapon_random <= weapon_random_back:
                 weapon += 1
