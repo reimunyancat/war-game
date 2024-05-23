@@ -33,6 +33,7 @@ soldier_display = ""
 money_display = ""
 
 def make_money():
+    #분기점점
     printline()
     print("1 : 깡노동  2 : 도박")
     main_input = input()
@@ -40,6 +41,7 @@ def make_money():
     elif main_input == '2':make_money2ex()
 
 def make_money1():
+    #돈벌기
     global money
     print("1초에",money_take,"원씩 벌어요")
     money_input = int(input("돈을 벌 시간을 입력하세요(초) : "))
@@ -357,7 +359,6 @@ def weapon_ganha():
             break
         else:
             print("뭐라카노")
-
 
 def war():
     global soldier, enemycountry, money, money_take, money_magnification_1, money_magnification_2, enemy_countries
