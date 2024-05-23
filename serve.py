@@ -5,6 +5,14 @@ import time
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
 
+def money_display_f(money):
+    display_str = f"{money:,}"
+    return display_str
+
+def soldier_display_f(soldier):
+    display_str = f"{soldier:,}"
+    return display_str
+
 class WarGameApp:
     def __init__(self, root):
         self.root = root
@@ -19,11 +27,14 @@ class WarGameApp:
         self.weapon_ganha_take = 100
         self.weapon_random_back = 95
         self.soldier = 0
+        self.enemycountry = 0 
 
         self.create_widgets()
 
     def create_widgets(self):
-        self.info_label = tk.Label(self.root, text=f"현재 돈: {self.money}원\n군인 수: {self.soldier}명\n무기: {weapon_name[self.weapon]}  (공격력 : {self.weapon_gan})")
+        money_display = money_display_f(self.money)
+        soldier_display = soldier_display_f(self.soldier)
+        info_label = tk.Label(self.root, text=f"현재 돈: {money_display}원\n군인 수: {soldier_display}명\n무기: {weapon_name[self.weapon]}  (공격력 : {self.weapon_gan})")
         self.info_label.grid(row=0, column=0, columnspan=2, pady=20, padx=10)
 
         self.money_button = tk.Button(self.root, text="돈 벌기", command=self.make_money)
@@ -39,7 +50,9 @@ class WarGameApp:
         self.war_button.grid(row=1, column=3, padx=10)
 
     def update_info_label(self):
-        self.info_label.config(text=f"현재 돈: {self.money}원,\n군인 수: {self.soldier}명")
+        money_display = money_display_f(self.money)
+        soldier_display = soldier_display_f(self.soldier)
+        self.info_label.config(text=f"현재 돈: {money_display}원,\n군인 수: {soldier_display}명\n무기: {weapon_name[self.weapon]}  (공격력 : {self.weapon_gan})")
 
     def make_money(self):
         options = {"1": "깡노동", "2": "도박"}
@@ -68,7 +81,7 @@ class WarGameApp:
     def play_odd_even_game(self):
         bet = simpledialog.askinteger("홀짝 게임", "베팅 금액을 입력하세요:")
         if bet and bet <= self.money:
-            result = random.randint(1, 100)
+            result = random.randint(0, 100)
             user_choice = simpledialog.askstring("홀짝 게임", "홀수인지 짝수인지 선택하세요 (홀수/짝수):")
             if (result % 2 == 0 and user_choice == "짝수") or (result % 2 != 0 and user_choice == "홀수"):
                 self.money += bet * self.money_magnification_1
@@ -92,8 +105,8 @@ class WarGameApp:
         dealer_hand_value = self.calculate_hand_value(dealer_hand)
 
         while True:
-            action = simpledialog.askstring("블랙잭", f"플레이어의 카드: {player_hand}\n플레이어의 현재 카드 합계: {player_hand_value}\n카드를 더 받으시겠습니까?(yes/no):")
-            if action.lower() == 'yes':
+            action = simpledialog.askstring("블랙잭", f"플레이어의 카드: {player_hand}\n플레이어의 현재 카드 합계: {player_hand_value}\n카드를 더 받으시겠습니까?(y/n):")
+            if action.lower() == 'y':
                 player_hand.append(deck.pop())
                 player_hand_value = self.calculate_hand_value(player_hand)
                 if player_hand_value > 21:
@@ -109,7 +122,7 @@ class WarGameApp:
 
         if dealer_hand_value > 21 or player_hand_value > dealer_hand_value:
             messagebox.showinfo("블랙잭", "당신이 이겼습니다!")
-            self.money += betting
+            self.money += betting * self.money_magnification_2
         elif player_hand_value < dealer_hand_value:
             messagebox.showinfo("블랙잭", "당신이 졌습니다.")
             self.money -= betting
@@ -252,8 +265,8 @@ class WarGameApp:
 
     def start_war(self):
         enemy = enemy_countries[self.enemycountry]
-        enemy_strength = enemy['defence']
-        enemy_name = enemy['name']
+        enemy_strength = enemy.defence
+        enemy_name = enemy.name
 
         war_window = tk.Toplevel(self.root)
         war_window.title("전쟁 시작")
@@ -263,12 +276,12 @@ class WarGameApp:
 
         def conduct_war():
             if self.soldier > enemy_strength:
-                self.money += enemy['money_reward']
-                self.soldier += enemy['soldier_reward']
-                tk.messagebox.showinfo("전쟁 결과", f"{enemy_name}를 이겼습니다!\n군인 {enemy['soldier_reward']}명과 돈 {enemy['money_reward']}원을 얻었습니다.")
+                self.money += enemy.money_reward
+                self.soldier += enemy.soldier_reward
+                tk.messagebox.showinfo("전쟁 결과", f"{enemy_name}를 이겼습니다!\n군인 {enemy.soldier_reward}명과 돈 {enemy.money_reward}원을 얻었습니다.")
                 self.enemycountry += 1
             else:
-                self.soldier = max(0, self.soldier - enemy['attack'])
+                self.soldier = max(0, self.soldier - enemy.attack)
                 if self.soldier == 0:
                     tk.messagebox.showinfo("전쟁 결과", f"{enemy_name}의 공격에 의해 패배하였습니다.")
                 else:

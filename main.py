@@ -5,17 +5,6 @@ from random import randint
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
 from Scripts.fun import back, printline, tutorial, soldier_display_f, money_display_f
-# from pygame.locals import
-# import sys
-# import PIL.Image
-
-# FPS = 30
-# FramePerSec = pygame.time.Clock()
-
-
-# SCREEN_WIDTH = 1000
-
-# SCREEN_HEIGHT = 1000
 
 money = 1000
 soldier = 0
@@ -443,14 +432,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# def main():
-#     pygame.init()
-#     display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-#     pygame.display.set_caption("세계 전쟁")
-
-#     run = True
-
-#     while run:
-#         pass
-#     return
