@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import simpledialog, messagebox
 import random
 import time
+from Scripts.countries_data import enemy_countries
+from Scripts.weapons import weapon_name
 
 class WarGameApp:
     def __init__(self, root):
@@ -16,11 +18,12 @@ class WarGameApp:
         self.weapon_gan = 10
         self.weapon_ganha_take = 100
         self.weapon_random_back = 95
+        self.soldier = 0
 
         self.create_widgets()
 
     def create_widgets(self):
-        self.info_label = tk.Label(self.root, text=f"현재 돈: {self.money}원")
+        self.info_label = tk.Label(self.root, text=f"현재 돈: {self.money}원\n군인 수: {self.soldier}명\n무기: {weapon_name[self.weapon]}  (공격력 : {self.weapon_gan})")
         self.info_label.grid(row=0, column=0, columnspan=2, pady=20, padx=10)
 
         self.money_button = tk.Button(self.root, text="돈 벌기", command=self.make_money)
@@ -32,8 +35,11 @@ class WarGameApp:
         self.upgrade_weapon_button = tk.Button(self.root, text="무기 강화", command=self.weapon_ganha)
         self.upgrade_weapon_button.grid(row=1, column=2, padx=10)
 
+        self.war_button = tk.Button(self.root, text="전쟁 시작", command=self.start_war)
+        self.war_button.grid(row=1, column=3, padx=10)
+
     def update_info_label(self):
-        self.info_label.config(text=f"현재 돈: {self.money}원")
+        self.info_label.config(text=f"현재 돈: {self.money}원,\n군인 수: {self.soldier}명")
 
     def make_money(self):
         options = {"1": "깡노동", "2": "도박"}
@@ -179,21 +185,102 @@ class WarGameApp:
 
     def weapon_ganha(self):
         if self.money < self.weapon_ganha_take:
-            messagebox.showinfo("강화 실패", "돈이 부족합니다.")
+            messagebox.showinfo("You are an idiot", "HA HAHA HA HAHAHA HAHAHAHAHA")
             return
 
         self.money -= self.weapon_ganha_take
         weapon_random = randint(1, 100)
         if weapon_random <= self.weapon_random_back:
-            self.weapon += 1
-            self.weapon_gan += 5
-            self.weapon_ganha_take *= 1.2
-            self.weapon_random_back -= 5
+            weapon_random = randint(0, 100)
+            self.money -= int(self.weapon_ganha_take)
+            if weapon_random <= self.weapon_random_back:
+                self.weapon += 1
+                if self.weapon == 1:
+                    self.weapon_gan = 5
+                if self.weapon < 10:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 1.3
+                    self.weapon_ganha_take *= 1.2
+                elif self.weapon < 20:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 1.7
+                    self.weapon_ganha_take *= 1.8
+                elif self.weapon < 30:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 2.3
+                    self.weapon_ganha_take *= 2.5
+                elif self.weapon < 40:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 2.9
+                    self.weapon_ganha_take *= 3.2
+                elif self.weapon < 50:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 3.5
+                    self.weapon_ganha_take *= 4
+                elif self.weapon < 60:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 4.2
+                    self.weapon_ganha_take *= 5
+                elif self.weapon < 70:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 5
+                    self.weapon_ganha_take *= 6
+                elif self.weapon < 80:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 6
+                    self.weapon_ganha_take *= 7.5
+                elif self.weapon < 90:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 7.5
+                    self.weapon_ganha_take *= 9
+                elif self.weapon < 100:
+                    self.weapon_gan += int(self.weapon_gan_take)
+                    self.weapon_gan_take *= 9
+                    self.weapon_ganha_take *= 10.5
+                elif self.weapon == 100:
+                    self.weapon_gan_take *= 10000000000
+                    self.weapon_ganha_take *= 100000000
+                    self.weapon_gan += int(self.weapon_gan_take)
+                tmp = int(self.weapon_random_back) - int(self.weapon_random_back) * 0.94
+                self.weapon_random_back -= int(tmp)
+                self.weapon_random_front = str(self.weapon_random_back) + "%"
             messagebox.showinfo("강화 성공", f"무기가 강화되었습니다! 현재 레벨: {self.weapon}, 파워: {self.weapon_gan}")
         else:
             messagebox.showinfo("강화 실패", "무기 강화에 실패했습니다.")
 
         self.info_label.config(text=self.get_info_text())
+
+    def start_war(self):
+        enemy = enemy_countries[self.enemycountry]
+        enemy_strength = enemy['defence']
+        enemy_name = enemy['name']
+
+        war_window = tk.Toplevel(self.root)
+        war_window.title("전쟁 시작")
+
+        info_label = tk.Label(war_window, text=f"적국: {enemy_name}\n적국 방어력: {enemy_strength}\n당신의 군인 수: {self.soldier}")
+        info_label.pack()
+
+        def conduct_war():
+            if self.soldier > enemy_strength:
+                self.money += enemy['money_reward']
+                self.soldier += enemy['soldier_reward']
+                tk.messagebox.showinfo("전쟁 결과", f"{enemy_name}를 이겼습니다!\n군인 {enemy['soldier_reward']}명과 돈 {enemy['money_reward']}원을 얻었습니다.")
+                self.enemycountry += 1
+            else:
+                self.soldier = max(0, self.soldier - enemy['attack'])
+                if self.soldier == 0:
+                    tk.messagebox.showinfo("전쟁 결과", f"{enemy_name}의 공격에 의해 패배하였습니다.")
+                else:
+                    tk.messagebox.showinfo("전쟁 결과", "패배하였습니다.")
+            self.update_info_label()
+            war_window.destroy()
+
+        start_button = tk.Button(war_window, text="전쟁을 시작하라", command=conduct_war)
+        start_button.pack()
+
+        exit_button = tk.Button(war_window, text="나가기", command=war_window.destroy)
+        exit_button.pack()
 
 if __name__ == "__main__":
     root = tk.Tk()
