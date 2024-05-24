@@ -1,6 +1,7 @@
 import tkinter as tk
-from tkinter import simpledialog, messagebox
+from tkinter import simpledialog, messagebox, Toplevel, Label, Entry, Button, StringVar, OptionMenu
 import random
+from random import randint
 import time
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
@@ -18,29 +19,33 @@ class WarGameApp:
         self.root = root
         self.root.title("전쟁 게임")
 
-        self.money = 1000
+        self.money = 100000000000000000
         self.money_take = 100
         self.money_magnification_1 = 4
         self.money_magnification_2 = 10
         self.weapon = 0
-        self.weapon_gan = 10
+        self.weapon_gan = 1
+        self.weapon_gan_take = 10
         self.weapon_ganha_take = 100
-        self.weapon_random_back = 95
+        self.weapon_random_back = 100
         self.soldier = 0
         self.enemycountry = 0 
+        money_display = money_display_f(self.money)
+        soldier_display = soldier_display_f(self.soldier)
+        self.info_label = tk.Label(self.root, text=f"현재 돈: {money_display}원\n군인 수: {soldier_display}명\n무기: {weapon_name[self.weapon]}  (공격력 : {self.weapon_gan})")
 
         self.create_widgets()
 
     def create_widgets(self):
         money_display = money_display_f(self.money)
         soldier_display = soldier_display_f(self.soldier)
-        info_label = tk.Label(self.root, text=f"현재 돈: {money_display}원\n군인 수: {soldier_display}명\n무기: {weapon_name[self.weapon]}  (공격력 : {self.weapon_gan})")
+        print(self.info_label)
         self.info_label.grid(row=0, column=0, columnspan=2, pady=20, padx=10)
 
         self.money_button = tk.Button(self.root, text="돈 벌기", command=self.make_money)
         self.money_button.grid(row=1, column=0, padx=10)
 
-        self.soldier_button = tk.Button(self.root, text="군인 및 장비 모집", command=self.make_soldier)
+        self.soldier_button = tk.Button(self.root, text="군인 모집", command=lambda: self.make_soldier())
         self.soldier_button.grid(row=1, column=1, padx=10)
 
         self.upgrade_weapon_button = tk.Button(self.root, text="무기 강화", command=self.weapon_ganha)
@@ -52,7 +57,7 @@ class WarGameApp:
     def update_info_label(self):
         money_display = money_display_f(self.money)
         soldier_display = soldier_display_f(self.soldier)
-        self.info_label.config(text=f"현재 돈: {money_display}원,\n군인 수: {soldier_display}명\n무기: {weapon_name[self.weapon]}  (공격력 : {self.weapon_gan})")
+        self.info_label.config(text=f"현재 돈: {money_display}원\n군인 수: {soldier_display}명\n무기: {weapon_name[self.weapon]}  (공격력 : {self.weapon_gan})")
 
     def make_money(self):
         options = {"1": "깡노동", "2": "도박"}
@@ -84,7 +89,7 @@ class WarGameApp:
             result = random.randint(0, 100)
             user_choice = simpledialog.askstring("홀짝 게임", "홀수인지 짝수인지 선택하세요 (홀수/짝수):")
             if (result % 2 == 0 and user_choice == "짝수") or (result % 2 != 0 and user_choice == "홀수"):
-                self.money += bet * self.money_magnification_1
+                self.money += bet * self.money_magnification_1 - self.money
                 messagebox.showinfo("홀짝 게임", f"이겼습니다! 컴퓨터의 숫자: {result}")
             else:
                 self.money -= bet
@@ -113,7 +118,13 @@ class WarGameApp:
                     messagebox.showinfo("블랙잭", "버스트! 당신이 졌습니다.")
                     self.money -= betting
                     break
-            else:
+
+            elif action.lower() == 'n':
+                break
+
+            elif action.lower() == 'f':
+                messagebox.showinfo("블랙잭", "게임을 포기하셨습니다.")
+                self.money -= int(betting / 2)
                 break
 
         while dealer_hand_value < 17:
@@ -122,7 +133,7 @@ class WarGameApp:
 
         if dealer_hand_value > 21 or player_hand_value > dealer_hand_value:
             messagebox.showinfo("블랙잭", "당신이 이겼습니다!")
-            self.money += betting * self.money_magnification_2
+            self.money += betting * self.money_magnification_2 - self.money
         elif player_hand_value < dealer_hand_value:
             messagebox.showinfo("블랙잭", "당신이 졌습니다.")
             self.money -= betting
@@ -161,13 +172,13 @@ class WarGameApp:
                 num_units = int(entry.get())
                 total_cost = num_units * cost
                 if self.money >= total_cost:
-                    if unit_type == "soldier":
+                    if unit_type == "군인 (1,000원)":
                         self.soldier += num_units
-                    elif unit_type == "tank":
+                    elif unit_type == "탱크 (1,000,000원)":
                         self.soldier += num_units * 1200
-                    elif unit_type == "fighter":
+                    elif unit_type == "전투기 (1,000,000,000원)":
                         self.soldier += num_units * 1500000
-                    elif unit_type == "nuclear":
+                    elif unit_type == "핵시설 (1,000,000,000,000,000원)":
                         self.soldier += num_units * 15000000000000
 
                     self.money -= total_cost
@@ -183,8 +194,13 @@ class WarGameApp:
 
         Label(soldier_window, text="모집할 유닛의 종류를 선택하세요:").pack()
         unit_type_var = StringVar(soldier_window)
-        unit_type_var.set("soldier")  # default value
-        unit_options = {"soldier": 1000, "tank": 1000000, "fighter": 1000000000, "nuclear": 1000000000000000}
+        unit_type_var.set("군인 (1,000원)") 
+        unit_options = {
+            "군인 (1,000원)": 1000,
+            "탱크 (1,000,000원)": 1000000,
+            "전투기 (1,000,000,000원)": 1000000000,
+            "핵시설 (1,000,000,000,000,000원)": 1000000000000000
+        }
         unit_type_menu = OptionMenu(soldier_window, unit_type_var, *unit_options.keys())
         unit_type_menu.pack()
 
@@ -198,70 +214,67 @@ class WarGameApp:
 
     def weapon_ganha(self):
         if self.money < self.weapon_ganha_take:
-            messagebox.showinfo("You are an idiot", "HA HAHA HA HAHAHA HAHAHAHAHA")
+            messagebox.showinfo("You are an idiot", "HAHAHA")
             return
 
-        self.money -= self.weapon_ganha_take
         weapon_random = randint(1, 100)
         if weapon_random <= self.weapon_random_back:
-            weapon_random = randint(0, 100)
-            self.money -= int(self.weapon_ganha_take)
-            if weapon_random <= self.weapon_random_back:
-                self.weapon += 1
-                if self.weapon == 1:
-                    self.weapon_gan = 5
-                if self.weapon < 10:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 1.3
-                    self.weapon_ganha_take *= 1.2
-                elif self.weapon < 20:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 1.7
-                    self.weapon_ganha_take *= 1.8
-                elif self.weapon < 30:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 2.3
-                    self.weapon_ganha_take *= 2.5
-                elif self.weapon < 40:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 2.9
-                    self.weapon_ganha_take *= 3.2
-                elif self.weapon < 50:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 3.5
-                    self.weapon_ganha_take *= 4
-                elif self.weapon < 60:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 4.2
-                    self.weapon_ganha_take *= 5
-                elif self.weapon < 70:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 5
-                    self.weapon_ganha_take *= 6
-                elif self.weapon < 80:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 6
-                    self.weapon_ganha_take *= 7.5
-                elif self.weapon < 90:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 7.5
-                    self.weapon_ganha_take *= 9
-                elif self.weapon < 100:
-                    self.weapon_gan += int(self.weapon_gan_take)
-                    self.weapon_gan_take *= 9
-                    self.weapon_ganha_take *= 10.5
-                elif self.weapon == 100:
-                    self.weapon_gan_take *= 10000000000
-                    self.weapon_ganha_take *= 100000000
-                    self.weapon_gan += int(self.weapon_gan_take)
-                tmp = int(self.weapon_random_back) - int(self.weapon_random_back) * 0.94
-                self.weapon_random_back -= int(tmp)
-                self.weapon_random_front = str(self.weapon_random_back) + "%"
-            messagebox.showinfo("강화 성공", f"무기가 강화되었습니다! 현재 레벨: {self.weapon}, 파워: {self.weapon_gan}")
+            self.weapon += 1
+            if self.weapon == 1:
+                self.weapon_gan = 10
+            if self.weapon < 10:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 1.3
+                self.weapon_ganha_take *= 1.2
+            elif self.weapon < 20:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 1.7
+                self.weapon_ganha_take *= 1.8
+            elif self.weapon < 30:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 2.3
+                self.weapon_ganha_take *= 2.5
+            elif self.weapon < 40:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 2.9
+                self.weapon_ganha_take *= 3.2
+            elif self.weapon < 50:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 3.5
+                self.weapon_ganha_take *= 4
+            elif self.weapon < 60:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 4.2
+                self.weapon_ganha_take *= 5
+            elif self.weapon < 70:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 5
+                self.weapon_ganha_take *= 6
+            elif self.weapon < 80:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 6
+                self.weapon_ganha_take *= 7.5
+            elif self.weapon < 90:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 7.5
+                self.weapon_ganha_take *= 9
+            elif self.weapon < 100:
+                self.weapon_gan += int(self.weapon_gan_take)
+                self.weapon_gan_take *= 9
+                self.weapon_ganha_take *= 10.5
+            elif self.weapon == 100:
+                self.weapon_gan_take *= 10000000000
+                self.weapon_ganha_take *= 100000000
+                self.weapon_gan += int(self.weapon_gan_take)
+            tmp = int(self.weapon_random_back) - int(self.weapon_random_back) * 0.94
+            self.weapon_random_back -= int(tmp)
+            self.weapon_random_front = str(self.weapon_random_back) + "%"
+            self.money -= self.weapon_ganha_take
+            messagebox.showinfo("강화 성공", f"무기가 강화되었습니다! 현재 레벨: {self.weapon}, 공격력: {self.weapon_gan}")
         else:
             messagebox.showinfo("강화 실패", "무기 강화에 실패했습니다.")
-
-        self.info_label.config(text=self.get_info_text())
+        
+        self.update_info_label()  
 
     def start_war(self):
         enemy = enemy_countries[self.enemycountry]

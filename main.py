@@ -5,6 +5,7 @@ from random import randint
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
 from Scripts.fun import back, printline, tutorial, soldier_display_f, money_display_f
+from Scripts.wa import key
 
 money = 1000
 soldier = 0
@@ -423,6 +424,13 @@ def menu():
 def ending(enemy_country_index):
     if enemy_country_index == 70:
         print("축하드립니다")
+        print("제작자에게 key가 나온 사진을 보내세요")
+        random_key = randint(0, 5)
+        printline()
+        print(key[random_key])
+        printline()
+        print("1분후에 종료됩니다")
+        time.sleep(60)
         exit()
 
 def main():
