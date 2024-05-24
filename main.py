@@ -6,6 +6,8 @@ from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
 from Scripts.fun import back, printline, tutorial, soldier_display_f, money_display_f
 from Scripts.wa import key
+from cryptography.fernet import Fernet
+import json
 
 money = 1000
 soldier = 0
@@ -62,7 +64,7 @@ def make_money2():
             break
 
         if money <= 0:
-            print("돈도 없으면서 뭔 도박이야")
+            print("You are an idiot")
             break
 
         betting = int(input("베팅 금액을 입력하세요: "))
@@ -79,7 +81,7 @@ def make_money2():
         print(f"컴퓨터가 선택한 숫자는 {computer_number}입니다.")
         
         if (computer_number % 2 == 0 and user_choice == '짝수') or (computer_number % 2 != 0 and user_choice == '홀수'):
-            money += betting*money_magnification_1-money
+            money += betting*money_magnification_1-betting
             print("축하합니다! 이겼습니다.")
         else:
             money -= betting
@@ -186,7 +188,7 @@ def make_money3():
 
             if dealer_hand_value > 21 or player_hand_value > dealer_hand_value:
                 print("플레이어 승리!")
-                money += betting * money_magnification_2 - money
+                money += betting * money_magnification_2 - betting
             elif dealer_hand_value > player_hand_value:
                 print("딜러 승리!")
                 money -= betting
@@ -196,7 +198,7 @@ def make_money3():
 
                 if player_priority > dealer_priority:
                     print("플레이어 승리!")
-                    money += betting * money_magnification_2 - money
+                    money += betting * money_magnification_2 - betting
                 elif player_priority < dealer_priority:
                     print("딜러 승리!")
                     money -= betting
@@ -392,7 +394,57 @@ def war():
             print("에휴")
             break
 
-    
+def generate_key():
+    key = Fernet.generate_key()
+    with open('secret.key', 'wb') as key_file:
+        key_file.write(key)
+    return key
+
+def load_key():
+    try:
+        with open('secret.key', 'rb') as key_file:
+            key = key_file.read()
+        return key
+    except FileNotFoundError:
+        return generate_key()
+
+key_data = load_key()
+cipher_suite = Fernet(key_data)
+
+def save_game():
+    global money, soldier, weapon, weapon_gan, enemycountry
+    printline()
+    game_state = {
+        'money': money,
+        'soldier': soldier,
+        'weapon': weapon,
+        'weapon_gan': weapon_gan,
+        'enemycountry': enemycountry
+    }
+    encrypted_data = cipher_suite.encrypt(json.dumps(game_state).encode('utf-8'))
+    with open('game_state.enc', 'wb') as f:
+        f.write(encrypted_data)
+    print("저장 성공")
+
+def load_game():
+    global money, soldier, weapon, weapon_gan, enemycountry
+    printline()
+    try:
+        with open('game_state.enc', 'rb') as f:
+            encrypted_data = f.read()
+        decrypted_data = cipher_suite.decrypt(encrypted_data)
+        game_state = json.loads(decrypted_data.decode('utf-8'))
+        money = game_state['money']
+        soldier = game_state['soldier']
+        weapon = game_state['weapon']
+        weapon_gan = game_state['weapon_gan']
+        enemycountry = game_state['enemycountry']
+        print("로드 성공")
+    except FileNotFoundError:
+        print("저장된 게임이 없습니다.")
+    except Exception as e:
+        print(f"로드실패: {e}")
+
 printline()
 
 print("전쟁 게임에 오신 것을 환영합니다")
@@ -410,14 +462,16 @@ def menu():
     printline()
     print(f"국가 이름 : {country_name}  유저 이름 : {main_name}\n")
     print(f"돈 : {money_display}원\n군인 수 : {soldier_display}\n무기 : {weapon_name[weapon]} (공격력 : {weapon_gan})\n")
-    print("1: 돈벌기  2: 부대모집  3: 무기강화  4: 전쟁시작  5: 게임종료")
+    print("1: 돈벌기  2: 부대모집  3: 무기강화  4: 전쟁시작  5: 저장  6: 로드  7: 종료")
     main_input = input()
     if main_input == "/도움말": tutorial()
     elif main_input == '1': make_money()
     elif main_input == '2': make_soldier()
     elif main_input == '3': weapon_ganha()
     elif main_input == '4': war()
-    elif main_input == '5': exit()
+    elif main_input == '5': save_game()
+    elif main_input == '6': load_game()
+    elif main_input == '7': exit()
 
 def ending(enemy_country_index):
     if enemy_country_index == 70:
