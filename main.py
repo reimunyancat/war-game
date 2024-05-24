@@ -19,8 +19,6 @@ weapon_ganha_take = 100
 weapon_random_front = '100%'
 weapon_random_back = 100
 enemycountry = 0
-soldier_display = ""
-money_display = ""
 
 def make_money():
     #분기점점
@@ -40,7 +38,7 @@ def make_money1():
         money += money_take
         time.sleep(1)
         money_input -= 1
-        money_display_f()
+        money_display = money_display_f(money)
     print("현재 돈은", money_display,"원 입니다")
 
 def make_money2ex():
@@ -52,12 +50,12 @@ def make_money2ex():
         make_money3()
 
 def make_money2():
-    global money, money_display
+    global money
     printline()
     print(f"홀짝 게임을 시작합니다!\n성공하신다면 베팅금액을 {money_magnification_1}배로 획득하실수 있습니다.\n실패하시면 베팅금액을 잃습니다.")
     
     while(True):
-        money_display = money_display_f()
+        money_display = money_display_f(money)
         print(f"현재 돈 : {money_display}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
@@ -88,7 +86,7 @@ def make_money2():
             print("아쉽지만 실패했습니다. 다음 기회에 도전해보세요.")
 
 def make_money3():
-    global money, money_display
+    global money
     
     def initialize_deck():
         suits = ['스페이드', '다이아몬드', '하트', '클로버']
@@ -127,7 +125,7 @@ def make_money3():
     print(f"블랙잭 게임을 시작합니다!\n성공하시면 배팅금액의 {money_magnification_2}배로 획득하실수 있습니다\n실패하시면 배팅금액을 잃습니다\n포기하시면 베팅금액의 절반을 얻습니다.")
     while True:
         forgive = 0
-        money_display = money_display_f()
+        money_display = money_display_f(money)
         print(f"현재 돈 : {money_display}")
         serve_input = input("하시려면 1, 나가시려면 2를 입력하세요\n")
         if serve_input == '2':
@@ -209,7 +207,7 @@ def make_money3():
 def make_soldier():
     global money, soldier
     printline()
-    money_display = money_display_f()
+    money_display = money_display_f(money)
     print(f"현재 돈 : {money_display}\n")
     print("1 : 군인(1,000원)  2 : 탱크(1,000,000원) 3 : 전투기(1,000,000,000원) 4 : 핵시설(1,000,000,000,000,000원)")
     military = int(input())
@@ -223,8 +221,8 @@ def make_soldier():
             print("허접~ 거지주제에 군인이라니")
         else:
             soldier += soldier_i
-            money -= soldier_i*1000000
-            soldier_display = soldier_display_f()
+            money -= soldier_i*1000
+            soldier_display = soldier_display_f(soldier)
             print("현재 군인수는", soldier_display,"명입니다")
 
     elif military == 2:
@@ -238,7 +236,7 @@ def make_soldier():
         else:
             soldier += soldier_i*1200
             money -= soldier_i*1000000
-            soldier_display = soldier_display_f()
+            soldier_display = soldier_display_f(soldier)
             print("현재 군인수는", soldier_display,"명입니다")
 
     elif military == 3:
@@ -252,7 +250,7 @@ def make_soldier():
         else:
             soldier += soldier_i*1500000
             money -= soldier_i*1000000000
-            soldier_display = soldier_display_f()
+            soldier_display = soldier_display_f(soldier)
             print("현재 군인수는", soldier_display,"명입니다")
     
     elif military == 4:
@@ -266,7 +264,7 @@ def make_soldier():
         else:
             soldier += soldier_i*15000000000000
             money -= soldier_i*1000000000000000
-            soldier_display = soldier_display_f()
+            soldier_display = soldier_display_f(soldier)
             print("현재 군인수는", soldier_display,"명입니다")
 
 def weapon_ganha():
@@ -274,7 +272,7 @@ def weapon_ganha():
     
     printline()
     while True:
-        money_display = money_display_f()
+        money_display = money_display_f(money)
         print(f"현재 강화 수치는 {weapon_name[weapon]} ({weapon})입니다\n강화 비용은 {int(weapon_ganha_take)}입니다\n강화 확률은 {weapon_random_front}입니다.")
         print(f"현재 돈 : {money_display}")
         serve_input = input("강화하시려면 '/강화'를 입력하세요\n강화를 멈추려면 '/튀튀'를 입력하세요\n")
@@ -427,7 +425,7 @@ def ending(enemy_country_index):
         print("제작자에게 key가 나온 사진을 보내세요")
         random_key = randint(0, 5)
         printline()
-        print(key[random_key])
+        print(f"key = {key[random_key]}")
         printline()
         print("1분후에 종료됩니다")
         time.sleep(60)
