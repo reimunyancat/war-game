@@ -4,10 +4,9 @@ import datetime
 from random import randint
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
-from Scripts.fun import back, printline, tutorial, soldier_display_f, money_display_f
+from Scripts.fun import back, printline, tutorial, soldier_display_f, money_display_f, save_game, load_game
 from Scripts.wa import key
-from cryptography.fernet import Fernet
-import json
+
 
 money = 1000
 soldier = 0
@@ -394,57 +393,6 @@ def war():
             print("에휴")
             break
 
-def generate_key():
-    key = Fernet.generate_key()
-    with open('secret.key', 'wb') as key_file:
-        key_file.write(key)
-    return key
-
-def load_key():
-    try:
-        with open('secret.key', 'rb') as key_file:
-            key = key_file.read()
-        return key
-    except FileNotFoundError:
-        return generate_key()
-
-key_data = load_key()
-cipher_suite = Fernet(key_data)
-
-def save_game():
-    global money, soldier, weapon, weapon_gan, enemycountry
-    printline()
-    game_state = {
-        'money': money,
-        'soldier': soldier,
-        'weapon': weapon,
-        'weapon_gan': weapon_gan,
-        'enemycountry': enemycountry
-    }
-    encrypted_data = cipher_suite.encrypt(json.dumps(game_state).encode('utf-8'))
-    with open('game_state.enc', 'wb') as f:
-        f.write(encrypted_data)
-    print("저장 성공")
-
-def load_game():
-    global money, soldier, weapon, weapon_gan, enemycountry
-    printline()
-    try:
-        with open('game_state.enc', 'rb') as f:
-            encrypted_data = f.read()
-        decrypted_data = cipher_suite.decrypt(encrypted_data)
-        game_state = json.loads(decrypted_data.decode('utf-8'))
-        money = game_state['money']
-        soldier = game_state['soldier']
-        weapon = game_state['weapon']
-        weapon_gan = game_state['weapon_gan']
-        enemycountry = game_state['enemycountry']
-        print("로드 성공")
-    except FileNotFoundError:
-        print("저장된 게임이 없습니다.")
-    except Exception as e:
-        print(f"로드실패: {e}")
-
 printline()
 
 print("전쟁 게임에 오신 것을 환영합니다")
@@ -469,7 +417,7 @@ def menu():
     elif main_input == '2': make_soldier()
     elif main_input == '3': weapon_ganha()
     elif main_input == '4': war()
-    elif main_input == '5': save_game()
+    elif main_input == '5': save_game(country_name, main_name, money, soldier, weapon, weapon_gan, enemycountry)
     elif main_input == '6': load_game()
     elif main_input == '7': exit()
 
