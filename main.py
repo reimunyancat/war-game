@@ -35,7 +35,8 @@ def make_money1():
     print("1초에",money_take,"원씩 벌어요")
     money_input = int(input("돈을 벌 시간을 입력하세요(초) : "))
     while True:
-        if money_input <= 0:break
+        if not back(money_input):
+            break
         money += money_take
         time.sleep(1)
         money_input -= 1
