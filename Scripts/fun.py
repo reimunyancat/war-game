@@ -61,7 +61,7 @@ def save_game(country_name, main_name, money, soldier, weapon, weapon_gan, enemy
         'main_name': main_name
     }
     encrypted_data = cipher_suite.encrypt(json.dumps(game_state).encode('utf-8'))
-    with open('game_state.enc', 'wb') as f:
+    with open('save/game_state.enc', 'wb') as f:
         f.write(encrypted_data)
     print("저장 성공")
 
