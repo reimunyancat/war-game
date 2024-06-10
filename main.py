@@ -1,6 +1,6 @@
 import time
 import random
-import datetime
+
 from random import randint
 from Scripts.countries_data import enemy_countries
 from Scripts.weapons import weapon_name
@@ -35,7 +35,7 @@ def make_money1():
     print("1초에",money_take,"원씩 벌어요")
     money_input = int(input("돈을 벌 시간을 입력하세요(초) : "))
     while True:
-        if not back(money_input):
+        if not back(money_input, money):
             break
         money += money_take
         time.sleep(1)
@@ -68,7 +68,7 @@ def make_money2():
             break
 
         betting = int(input("베팅 금액을 입력하세요: "))
-        if not back(betting):
+        if not back(betting, money):
             continue
 
         user_choice = input("홀수인지 짝수인지 선택하세요 (홀수/짝수): ")
@@ -138,7 +138,7 @@ def make_money3():
             break
 
         betting = int(input("베팅 금액을 입력하세요: "))
-        if not back(betting):
+        if not back(betting, money):
             continue
 
         deck = initialize_deck()
@@ -216,7 +216,7 @@ def make_soldier():
     if military == 1:
         print("군인 한명당 1,000원입니다\n군인을 몇 명 모집하시겠습니까")
         soldier_i = int(input())
-        if not back(soldier_i):
+        if not back(soldier_i, money):
             print("You are an idiot")
 
         elif money < soldier_i*1000:
@@ -230,7 +230,7 @@ def make_soldier():
     elif military == 2:
         print("탱크 한대당 1,000,000원입니다\n군인은 1,200명이 모집됩니다\n탱크를 몇 개 사시겠습니까")
         soldier_i = int(input())
-        if not back(soldier_i):
+        if not back(soldier_i, money):
             print("You are an idiot")
 
         elif money < soldier_i*1000000:
@@ -244,7 +244,7 @@ def make_soldier():
     elif military == 3:
         print("전투기 한대당 1,000,000,000원입니다\n군인은 1,500,000명이 모집됩니다\n전투기를 몇 개 사시겠습니까")
         soldier_i = int(input())
-        if not back(soldier_i):
+        if not back(soldier_i, money):
             print("You are an idiot")
 
         elif money < soldier_i*1000000000:
@@ -258,7 +258,7 @@ def make_soldier():
     elif military == 4:
         print("핵미사일 한개당 1,000,000,000,000,000원입니다\n군인은 15,000,000,000,000명이 모집됩니다\n핵미사일을 몇 개 사시겠습니까")
         soldier_i = int(input())
-        if not back(soldier_i):
+        if not back(soldier_i, money):
             print("You are an idiot")
 
         elif money < soldier_i*1000000000000000:
@@ -292,49 +292,49 @@ def weapon_ganha():
                     weapon_gan = 5
                 if weapon < 10:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 1.3
+                    weapon_gan_take *= 1.1
                     weapon_ganha_take *= 1.2
                 elif weapon < 20:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 1.7
-                    weapon_ganha_take *= 1.8
+                    weapon_gan_take *= 1.3
+                    weapon_ganha_take *= 1.5
                 elif weapon < 30:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 2.3
-                    weapon_ganha_take *= 2.5
+                    weapon_gan_take *= 1.5
+                    weapon_ganha_take *= 1.7
                 elif weapon < 40:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 2.9
-                    weapon_ganha_take *= 3.2
+                    weapon_gan_take *= 1.8
+                    weapon_ganha_take *= 2
                 elif weapon < 50:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 3.5
-                    weapon_ganha_take *= 4
+                    weapon_gan_take *= 2
+                    weapon_ganha_take *= 2.5
                 elif weapon < 60:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 4.2
-                    weapon_ganha_take *= 5
+                    weapon_gan_take *= 2.4
+                    weapon_ganha_take *= 3
                 elif weapon < 70:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 5
-                    weapon_ganha_take *= 6
+                    weapon_gan_take *= 3
+                    weapon_ganha_take *= 3.5
                 elif weapon < 80:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 6
-                    weapon_ganha_take *= 7.5
+                    weapon_gan_take *= 3.7
+                    weapon_ganha_take *= 4
                 elif weapon < 90:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 7.5
-                    weapon_ganha_take *= 9
+                    weapon_gan_take *= 4.2
+                    weapon_ganha_take *= 4.5
                 elif weapon < 100:
                     weapon_gan += int(weapon_gan_take)
-                    weapon_gan_take *= 9
-                    weapon_ganha_take *= 10.5
+                    weapon_gan_take *= 5
+                    weapon_ganha_take *= 5
                 elif weapon == 100:
                     weapon_gan_take *= 10000000000
                     weapon_ganha_take *= 100000000
                     weapon_gan += int(weapon_gan_take)
-                tmp = int(weapon_random_back) - int(weapon_random_back) * 0.94
+                tmp = int(weapon_random_back) - int(weapon_random_back) * 0.96
                 weapon_random_back -= int(tmp)
                 weapon_random_front = str(weapon_random_back) + "%"
                 print("\n강화 성공!")
@@ -359,6 +359,7 @@ def war():
         print("전쟁을 시작하시려면 1, 나가시려면 2를 입력하세요\n")
         serve_input = int(input(""))
         if serve_input == 1:
+            tmp = enemy_countries[enemycountry].defence
             while True:
                 printline()
                 if enemy_countries[enemycountry].defence < 0:
@@ -386,6 +387,7 @@ def war():
                 if soldier == 0:
                     printline()
                     print(f"{enemy_countries[enemycountry].name}의 공격에 의해 패배하였습니다.")
+                    enemy_countries[enemycountry].defence = tmp
                     break
                 soldier -= enemy_countries[enemycountry].attack
                 enemy_countries[enemycountry].defence -= weapon_gan
@@ -425,7 +427,7 @@ def menu():
 def ending(enemy_country_index):
     if enemy_country_index == 70:
         print("축하드립니다")
-        print("제작자에게 key가 나온 사진을 보내세요")
+        print("게임을 클리어하셨습니다")
         random_key = randint(0, 5)
         printline()
         print(f"key = {key[random_key]}")

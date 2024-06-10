@@ -2,8 +2,8 @@ from cryptography.fernet import Fernet
 import json
 import os
 
-def back(betting):
-    if betting <= 0:
+def back(betting, money):
+    if betting <= 0 or betting > money:
         print("\aYou are an idiot")
         return False
     return True

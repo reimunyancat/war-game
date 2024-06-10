@@ -19,7 +19,7 @@ class WarGameApp:
         self.root = root
         self.root.title("전쟁 게임")
 
-        self.money = 100000000000000000
+        self.money = 1000
         self.money_take = 100
         self.money_magnification_1 = 4
         self.money_magnification_2 = 10
